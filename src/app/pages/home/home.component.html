@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 class="text-primary text-center">Hola Mundo</h1>
+    <div class="row text-center caja-estadisticas p-2 mt-4">
+        <div class="col-4">
+            <app-estadistica-cantidad  titulo="Infectados" color="#E04644" cantidad=125></app-estadistica-cantidad>
+        </div>
+
+        <div class="col-4">
+            <app-estadistica-cantidad  titulo="Sospechosos" color="#FDE47F" cantidad=250></app-estadistica-cantidad>
+        </div>
+
+        <div class="col-4">
+            <app-estadistica-cantidad titulo="Recuperados" color="#B7D968" cantidad=520></app-estadistica-cantidad>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <app-busqueda-simple></app-busqueda-simple>
+        </div>     
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <app-lista-personas [personas]="arrPersonas"></app-lista-personas>
+        </div>
+
+        <div class="col-8">
+            
+        </div>
+    </div>
+</div>

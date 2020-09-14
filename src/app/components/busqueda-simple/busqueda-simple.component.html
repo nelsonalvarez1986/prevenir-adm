@@ -1,0 +1,22 @@
+<div class="mt-5">
+<div class="md-form">
+  <input
+    mdbInput
+    type="text"
+    name="text"
+    [(ngModel)]="termino"
+    id="form1"
+    class="form-control"
+  />
+  <label for="form1" class=""
+    >Ingrese un DNI o bien una fecha en formato: dd/mm/aaaa</label
+  >
+</div>
+
+<div class="md-form">
+  <button type="button" mdbBtn block="true" color="primary" mdbWavesEffect
+  (click)="buscarTermino(termino)">
+    Buscar
+  </button>
+</div>
+</div>
