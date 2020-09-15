@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service';
+
 
 @Component({
   selector: 'app-busqueda-simple',
@@ -6,16 +8,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./busqueda-simple.component.scss']
 })
 export class BusquedaSimpleComponent implements OnInit {
+  
+  @ViewChild('alert', { static: false }) alert: ElementRef;
 
   public termino: string;
-  constructor() { }
+  public person: {};
+  public realizoBusqueda = false;
+
+  constructor(private firebase: FirebaseService) { }
 
   ngOnInit(): void {
   }
 
+  closeAlert() {
+    this.alert.nativeElement.classList.remove('show');
+  }
+
+  
   buscarTermino(termino) {
-    console.log(termino);
-    return termino
+    this.firebase.getAllPersons(termino).then( resp => {
+      (resp.val())
+      ? this.person = Object.values(resp.val())
+      : this.person = undefined;
+
+      this.realizoBusqueda = true
+    });
   }
 
 }

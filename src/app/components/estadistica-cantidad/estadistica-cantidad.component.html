@@ -4,22 +4,37 @@
     </div>
     <span class="text-center h3"> {{titulo}} </span>
     
-</div>-->
+</div>
 
-<li class="list-group-item p-0">
-    <div class="row">
-        <div class="col-4">
-            <div class="cantidad-caja" [ngStyle]="{'background-color': color}">
-                {{cantidad}}
-            </div>
-        </div>
+<div class="caja">
+    <p [ngStyle]="{'color': color}">{{titulo}}</p>
+    <p [ngStyle]="{'color': color}">{{cantidad}}</p>
+</div> -->
 
-        <div class="col-8">
-            <div>
-                {{titulo}}
-            </div>
-        </div>
-    </div>
+<div class="circulo">
+    <div
+      class="c100 p100"
+      [ngClass]="{
+        green: titulo === 'Recuperados',
+        red: titulo === 'Infectados',
+        black: titulo === 'Fallecidos',
+        orange: titulo !== 'Recuperados' && titulo !== 'Infectados' && titulo !== 'Fallecidos'
+      }"
+    >
+      <span class="strong text-xs ">{{ cantidad  }}</span>
+      <div class="slice">
+        <div class="bar"></div>
+        <div class="fill"></div>
+      </div>
+    </div><br>
+    <p class="mr-2" [ngClass]="{
+        verde: titulo === 'Recuperados',
+        rojo: titulo === 'Infectados',
+        negro: titulo === 'Fallecidos',
+        naranja: titulo !== 'Recuperados' && titulo !== 'Infectados' && titulo !== 'Fallecidos'
+      }"> {{titulo}} </p>
+  </div>
+
     
     
-</li>
+

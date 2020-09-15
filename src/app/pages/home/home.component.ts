@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service';
+import { Cantidades } from '../../interfaces/cantidades';
 
 @Component({
   selector: 'app-home',
@@ -9,32 +11,20 @@ export class HomeComponent implements OnInit {
 
   public arrPersonas: any[];
   
-  constructor() { }
+  public cantidades: Cantidades
+  
+  constructor( private firebase: FirebaseService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
 
-    this.arrPersonas = [
-      {
-        dni: 123456,
-        apellido: 'Lopez',
-        nombre: 'Juan',
-        barrio: 'Villa Zula'
-      },
+    this.cantidades = {
+      positivos: await this.firebase.getPersonsState('Positivo').then( resp => resp),
+      sospechosos: await this.firebase.getPersonsSospechosos().then( resp => resp),
+      recuperados: await this.firebase.getPersonsState('Alta').then( resp => resp),
+      fallecidos: await this.firebase.getPersonsState('Fallecido').then( resp => resp),
+    }
 
-      {
-        dni: 223698,
-        apellido: 'Gomez',
-        nombre: 'Roberto',
-        barrio: 'Juan B. Justo'
-      },
-
-      {
-        dni: 98456,
-        apellido: 'Alvarez',
-        nombre: 'Pepe',
-        barrio: 'Centro'
-      },
-    ]
+    console.log(this.cantidades);
   }
 
 }

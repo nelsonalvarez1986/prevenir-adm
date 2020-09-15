@@ -12,6 +12,12 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { ComponentsModule } from "./components/components.module";
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
+import { FirebaseService } from "./services/firebase.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +31,11 @@ import { ComponentsModule } from "./components/components.module";
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ComponentsModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'coronapp-b1f3c'),
+    
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

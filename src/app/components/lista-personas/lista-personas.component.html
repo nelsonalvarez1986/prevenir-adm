@@ -1,6 +1,41 @@
-<ul class="list-group list-group-flush">
-    <li class="list-group-item" *ngFor="let persona of personas">
-        {{ persona.apellido }} {{ persona.nombre }} 
-    </li>
-</ul>
-  
+
+        <div class="row personas-lista" *ngFor="let persona of personas">
+            <div class="col-12">
+                <h3 class="blue-grey-text font-weight-bold text-center mb-3">
+                    <mdb-icon class="mr-1" fas icon="user"></mdb-icon>{{ persona.apellido }} {{ persona.nombre }} 
+                    <span class="small muted font-italic"> ( {{persona.edad}} ) </span>
+                </h3>
+            </div>
+
+            <div class="col-12">
+                <p class="linea-abajo">
+                    <span class="small text-primary font-weight-bold">DNI: </span>
+                   <span class="small muted font-italic mr-3 ">{{persona.dni}}</span>
+                   <span class="small text-primary font-weight-bold">Email: </span>
+                   <span class="small muted font-italic mr-3">{{persona.email}}</span>
+                   <span class="small text-primary font-weight-bold">Telefono: </span>
+                   <span class="small muted font-italic mr-3">{{persona.telefono}}</span>
+                    <span class="small text-primary font-weight-bold">Direccion: </span>
+                    <span class="small muted font-italic mr-3">{{persona.direc}}</span>
+                    <span class="small text-primary font-weight-bold">Barrio: </span>
+                    <span class="small muted font-italic mr-3">{{persona.barrio}}</span>
+ 
+                 </p>
+            </div>
+
+            <div class="col-12 col-md-6 mt-1">
+                <button size="sm" type="button" mdbBtn block="true" color="amber" mdbWavesEffect
+                >
+                <mdb-icon fas icon="edit" class="mr-1"></mdb-icon>
+                Editar
+            </button>
+            </div>
+
+            <div class="col-12 col-md-6 mt-1">
+                <button size="sm" type="button" mdbBtn block="true" color="unique" mdbWavesEffect
+                >
+                <mdb-icon fas icon="trash" class="mr-1"></mdb-icon>
+                Eliminar
+            </button>
+            </div>
+        </div>
