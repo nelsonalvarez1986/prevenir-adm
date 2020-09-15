@@ -8,6 +8,8 @@ import { EstadisticaCantidadComponent } from './estadistica-cantidad/estadistica
 import { BusquedaSimpleComponent } from './busqueda-simple/busqueda-simple.component';
 import { ListaPersonasComponent } from './lista-personas/lista-personas.component';
 import { MapaComponent } from './mapa/mapa.component';
+import { GraficoComponent } from './grafico/grafico.component';
+import { CargandoComponent } from './cargando/cargando.component';
 
 
 
@@ -17,7 +19,9 @@ import { MapaComponent } from './mapa/mapa.component';
     EstadisticaCantidadComponent,
     BusquedaSimpleComponent,
     ListaPersonasComponent,
-    MapaComponent
+    MapaComponent,
+    GraficoComponent,
+    CargandoComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { MapaComponent } from './mapa/mapa.component';
     EstadisticaCantidadComponent,
     BusquedaSimpleComponent,
     ListaPersonasComponent,
-    MapaComponent
+    MapaComponent,
+    GraficoComponent,
+    CargandoComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!cargando">
   <div class="row text-center caja-estadisticas p-2 mt-4">
     <div class="col-6 col-md-4 col-lg-3">
       <div
@@ -56,10 +56,26 @@
   </div>
 
   <div class="row">
-    <div class="col-4">
-      <!--<app-lista-personas [personas]="arrPersonas"></app-lista-personas>-->
+    <div class="col-12 col-md-6">
+      <!--ACA LOS CHARTS-->
+      <div
+        class="d-flex align-content-center justify-content-center align-items-center"
+      >
+        <app-grafico></app-grafico>
+      </div>
     </div>
 
-    <div class="col-8"></div>
+    <div class="col-12 col-md-6">
+      <!--ACA EL MAPA-->
+      <div
+        class="d-flex align-content-center justify-content-center align-items-center"
+      >
+        <app-mapa></app-mapa>
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="container" *ngIf="cargando">
+    <app-cargando></app-cargando>
 </div>

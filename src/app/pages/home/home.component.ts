@@ -9,7 +9,7 @@ import { Cantidades } from '../../interfaces/cantidades';
 })
 export class HomeComponent implements OnInit {
 
-  public arrPersonas: any[];
+  public cargando: boolean = true;
   
   public cantidades: Cantidades
   
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
       fallecidos: await this.firebase.getPersonsState('Fallecido').then( resp => resp),
     }
 
-    console.log(this.cantidades);
+    this.cargando = false;
   }
 
 }
