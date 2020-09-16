@@ -1,0 +1,36 @@
+
+<!--<mdb-card cascade="true" class="cascading-admin-card mb-4">
+  
+  <div class="admin-up">
+    <mdb-icon
+      fas
+      [icon]="icono"
+      [ngClass]="{
+        'success-color': titulo === 'Recuperados',
+        'danger-color': titulo === 'Positivos',
+        'info-color': titulo === 'Fallecidos',
+        'warning-color': titulo !== 'Recuperados' && titulo !== 'Positivos' && titulo !== 'Fallecidos'
+      }"
+    ></mdb-icon>
+    <div class="data">
+      <p>{{ titulo }}</p>
+      <h4>
+        <strong>{{ cantidad }}</strong>
+      </h4>
+    </div>
+  </div>
+  
+</mdb-card>
+-->
+<mdb-card [bgColor]="color" class="classic-admin-card">
+  <mdb-card-body>
+      <div class="pull-right">
+          <mdb-icon fas [icon]='icono'></mdb-icon>
+      </div>
+      <p class="white-text">{{titulo}}</p>
+      <h4>
+          <strong>{{cantidad}}</strong>
+      </h4>
+  </mdb-card-body>
+  
+</mdb-card>

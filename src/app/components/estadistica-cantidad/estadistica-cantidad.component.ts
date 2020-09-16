@@ -14,7 +14,6 @@ export class EstadisticaCantidadComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.color);
   }
 
 

@@ -17,11 +17,15 @@ import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { FirebaseService } from "./services/firebase.service";
+import { PersonaComponent } from './pages/persona/persona.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    PersonaComponent,
     
   ],
   imports: [
@@ -30,6 +34,7 @@ import { FirebaseService } from "./services/firebase.service";
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     ComponentsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'coronapp-b1f3c'),

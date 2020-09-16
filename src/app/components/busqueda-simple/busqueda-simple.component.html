@@ -25,7 +25,8 @@
 </div>
 
 <div *ngIf="this.person" class="mt-2">
-  <app-lista-personas [personas]="person"></app-lista-personas>
+  <app-card-persona-buscada [personas]="person"></app-card-persona-buscada>
+  <!--<app-lista-personas [personas]="person"></app-lista-personas>-->
 </div>
 
 <div *ngIf="!this.person && realizoBusqueda">

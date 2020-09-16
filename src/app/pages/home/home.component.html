@@ -1,57 +1,20 @@
 <div class="container" *ngIf="!cargando">
-  <div class="row text-center caja-estadisticas p-2 mt-4">
-    <div class="col-6 col-md-4 col-lg-3">
-      <div
-        class="d-flex align-content-center justify-content-center align-items-center"
-      >
-        <app-estadistica-cantidad
-          titulo="Infectados"
-          color="#E04644"
-          [cantidad]="cantidades.positivos"
-        ></app-estadistica-cantidad>
-      </div>
-    </div>
-
-    <div class="col-6 col-md-4 col-lg-3">
-      <div
-        class="d-flex align-content-center justify-content-center align-items-center"
-      >
-        <app-estadistica-cantidad
-          titulo="Sospechosos"
-          color="#E9D50F"
-          [cantidad]="cantidades.sospechosos"
-        ></app-estadistica-cantidad>
-      </div>
-    </div>
-
-    <div class="col-6 col-md-4 col-lg-3">
-      <div
-        class="d-flex align-content-center justify-content-center align-items-center"
-      >
-        <app-estadistica-cantidad
-          titulo="Recuperados"
-          color="#0FE930"
-          [cantidad]="cantidades.recuperados"
-        ></app-estadistica-cantidad>
-      </div>
-    </div>
-
-    <div class="col-6 col-md-4 col-lg-3">
-      <div
-        class="d-flex align-content-center justify-content-center align-items-center"
-      >
-        <app-estadistica-cantidad
-          titulo="Fallecidos"
-          color="#0FE930"
-          [cantidad]="cantidades.fallecidos"
-        ></app-estadistica-cantidad>
-      </div>
+  
+  <div class="row mt-0" *ngIf="!cargando">
+    <div class="col-12">
+      <app-seccion-estadisticas [cantidades]="cantidades"></app-seccion-estadisticas>
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
       <app-busqueda-simple></app-busqueda-simple>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-card-persona-buscada></app-card-persona-buscada>
     </div>
   </div>
 
