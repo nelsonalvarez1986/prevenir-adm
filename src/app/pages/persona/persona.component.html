@@ -1,0 +1,357 @@
+<div class="container mb-5" *ngIf="cargando">
+  <app-cargando></app-cargando>
+</div>
+
+<div class="container-fluid" *ngIf="!cargando">
+  <div class="caja-datos">
+    <div class="row">
+      <div class="col-12">
+        <span
+          *ngIf="persona[0].Personal_esencial"
+          class="badge badge-pill badge-info p-2 mr-1"
+        >
+          <mdb-icon fas icon="user-md"></mdb-icon>
+          Es personal Escencial</span
+        >
+
+        <span
+          *ngIf="persona[0].Caso_sospechoso"
+          class="badge badge-pill badge-warning p-2"
+        >
+          <mdb-icon fas icon="exclamation-triangle"></mdb-icon>
+          Es Sospechoso</span
+        >
+
+        <span
+          *ngIf="!persona[0].Caso_sospechoso"
+          class="badge badge-pill badge-success p-2"
+        >
+          <mdb-icon fas icon="thumbs-up"></mdb-icon>
+          No Es Sospechoso</span
+        >
+      </div>
+    </div>
+    <form #f="ngForm" class="mt-4" novalidate="">
+      <div class="row">
+        <div class="col-6">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="apellido"
+              [(ngModel)]="persona[0].apellido"
+              id="apellido"
+              class="form-control mb-3"
+            />
+            <label for="apellido" class="">Apellido</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="nombre"
+              [(ngModel)]="persona[0].nombre"
+              id="nombre"
+              class="form-control mb-3"
+            />
+            <label for="nombre" class="">Nombre</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="fecha"
+              [(ngModel)]="persona[0].fecha"
+              id="fecha"
+              class="form-control mb-3"
+            />
+            <label for="fecha" class="">Fecha de Nacimiento</label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="edad"
+              [(ngModel)]="persona[0].edad"
+              id="edad"
+              class="form-control mb-3"
+            />
+            <label for="edad" class="">Edad</label>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="md-form mb-0">
+            <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona[0].sexo" class="browser-default custom-select">
+                <option [ngValue]="persona[0].sexo" selected>{{persona[0].sexo}}</option>
+                <option *ngFor="let s of sexos" [ngValue]="s">{{s}}</option>
+                
+            </select>
+            <!--<input
+              mdbInput
+              type="text"
+              name="sexo"
+              [(ngModel)]="persona[0].sexo"
+              id="sexo"
+              class="form-control mb-3"
+            />
+            <label for="sexo" class="">Sexo</label>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="direc"
+              [(ngModel)]="persona[0].direc"
+              id="direc"
+              class="form-control mb-3"
+            />
+            <label for="direc" class="">Direccion</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="md-form mb-0">
+            <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona[0].barrio" class="browser-default custom-select">
+                <option [ngValue]="persona[0].barrio" selected>{{persona[0].barrio}}</option>
+                <option *ngFor="let barrio of barrios" [ngValue]="barrio">{{barrio}}</option>
+                
+            </select>
+            <!--<input
+              mdbInput
+              type="text"
+              name="barrio"
+              
+              id="barrio"
+              class="form-control mb-3"
+            />
+            <label for="barrio" class="">Barrio</label>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="telefono"
+              [(ngModel)]="persona[0].telefono"
+              id="telefono"
+              class="form-control mb-3"
+            />
+            <label for="telefono" class="">Telefono</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="email"
+              [(ngModel)]="persona[0].email"
+              id="email"
+              class="form-control mb-3"
+            />
+            <label for="email" class="">Email</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="caja-sintomas">
+        <h3 class="text-center font-weight-bold text-info mt-1 mb-4">
+          Sintomas
+        </h3>
+
+        <div class="row mt-1">
+          <div class="col-12 col-md-4 mt-1 mb-1">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="tos"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="persona[0].Tos"
+              />
+              <label
+                class="custom-control-label small font-weight-bold text-elegant-col-12 col-md-4or"
+                for="tos"
+                >TOS</label
+              >
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mt-1 mb-1">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="Perdida_gusto_olfato"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="persona[0].Perdida_gusto_olfato"
+              />
+              <label
+                class="custom-control-label small font-weight-bold text-elegant-color"
+                for="Perdida_gusto_olfato"
+                >Perdida gusto y/u olfato</label
+              >
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mt-1 mb-1">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="fiebre"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="persona[0].Fiebre"
+              />
+              <label
+                class="custom-control-label small font-weight-bold text-elegant-color"
+                for="fiebre"
+                >Fiebre</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-md-4 mt-1 mb-1">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="Dificultad_respiratoria"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="persona[0].Dificultad_respiratoria"
+              />
+              <label
+                class="custom-control-label small font-weight-bold text-elegant-color"
+                for="Dificultad_respiratoria"
+                >Dificultad respiratoria</label
+              >
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mt-1 mb-1">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="Dolor_de_garganta"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="persona[0].Dolor_de_garganta"
+              />
+              <label
+                class="custom-control-label small font-weight-bold text-elegant-color"
+                for="Dolor_de_garganta"
+                >Dolor de garganta</label
+              >
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 mt-1 mb-1">
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="Contacto_estrecho"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="persona[0].Contacto_estrecho"
+              />
+              <label
+                class="custom-control-label small font-weight-bold text-elegant-color"
+                for="Contacto_estrecho"
+                >Contacto estrecho</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-4 mt-1 mb-1">
+                <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="Caso_sospechoso"
+                      [ngModelOptions]="{ standalone: true }"
+                      [(ngModel)]="persona[0].Caso_sospechoso"
+                    />
+                    <label
+                      class="custom-control-label small font-weight-bold text-elegant-color"
+                      for="Caso_sospechoso"
+                      >Caso sospechoso</label
+                    >
+                  </div>
+            </div>
+
+            <div class="col-12 col-md-4 mt-1 mb-1">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="Personal_esencial"
+                    [ngModelOptions]="{ standalone: true }"
+                    [(ngModel)]="persona[0].Personal_esencial"
+                  />
+                  <label
+                    class="custom-control-label small font-weight-bold text-elegant-color"
+                    for="Personal_esencial"
+                    >Personal esencial</label
+                  >
+                </div>
+              </div>
+
+            
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <button
+          (click)="updatePersona(persona[0])"
+          class="btn-block mt-4 mb-2"
+          mdbBtn
+          type="button"
+          color="elegant"
+          mdbWavesEffect
+        >
+          <mdb-icon fas class="mr-1" icon="save"></mdb-icon>
+          Guardar Cambios
+        </button>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <button
+        (click)="updatePersona(persona[0])"
+        class="btn-block mt-4 mb-2"
+        mdbBtn
+        type="button"
+        color="danger"
+        mdbWavesEffect
+      >
+      
+      <mdb-icon fas class="mr-1" icon="trash"></mdb-icon>
+        Cancelar
+      </button>
+      </div>
+    </div>
+  </div>
+</div>

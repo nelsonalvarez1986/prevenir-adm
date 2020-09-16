@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-grafico',
@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GraficoComponent implements OnInit {
 
+  @Input() headerType = '';
+  @Input() title = 'Prueba';
+  @Input() alignment = 'center';
+  @Input() src= '';
+  
   constructor() { }
 
   ngOnInit(): void {

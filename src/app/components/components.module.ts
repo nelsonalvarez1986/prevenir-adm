@@ -10,6 +10,9 @@ import { ListaPersonasComponent } from './lista-personas/lista-personas.componen
 import { MapaComponent } from './mapa/mapa.component';
 import { GraficoComponent } from './grafico/grafico.component';
 import { CargandoComponent } from './cargando/cargando.component';
+import { SeccionEstadisticasComponent } from './seccion-estadisticas/seccion-estadisticas.component';
+import { CardEstadisticaComponent } from './card-estadistica/card-estadistica.component';
+import { CardPersonaBuscadaComponent } from './card-persona-buscada/card-persona-buscada.component';
 
 
 
@@ -22,7 +25,10 @@ import { CargandoComponent } from './cargando/cargando.component';
     ListaPersonasComponent,
     MapaComponent,
     GraficoComponent,
-    CargandoComponent
+    CargandoComponent,
+    SeccionEstadisticasComponent,
+    CardEstadisticaComponent,
+    CardPersonaBuscadaComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +44,10 @@ import { CargandoComponent } from './cargando/cargando.component';
     ListaPersonasComponent,
     MapaComponent,
     GraficoComponent,
-    CargandoComponent
+    CargandoComponent,
+    SeccionEstadisticasComponent,
+    CardEstadisticaComponent,
+    CardPersonaBuscadaComponent
   ]
 })
 export class ComponentsModule { }

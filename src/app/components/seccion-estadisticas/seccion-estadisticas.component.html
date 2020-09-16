@@ -1,0 +1,33 @@
+<section class="mt-lg-5">
+
+    <!--Grid row-->
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-6 col-md-3 mt-1 mb-1 mb-r d-flex align-content-center justify-content-center align-items-center">          
+            <app-card-estadistica [cantidad]="cantidades.positivos" color="danger-color" titulo='Positivos' icono="briefcase-medical" ></app-card-estadistica>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-6 col-md-3 mt-1 mb-1 mb-r d-flex align-content-center justify-content-center align-items-center">          
+            <app-card-estadistica [cantidad]="cantidades.sospechosos" color="warning-color" titulo='Sospechosos' icono="file-medical" ></app-card-estadistica>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-6 col-md-3 mt-1 mb-1 mb-r d-flex align-content-center justify-content-center align-items-center">          
+            <app-card-estadistica [cantidad]="cantidades.recuperados" color="success-color" titulo='Recuperados' icono="clinic-medical" ></app-card-estadistica>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-6 col-md-3 mt-1 mb-1 mb-r d-flex align-content-center justify-content-center align-items-center">          
+            <app-card-estadistica [cantidad]="cantidades.fallecidos" color="info-color" titulo='Fallecidos' icono="book-dead" ></app-card-estadistica>
+        </div>
+        <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+</section>

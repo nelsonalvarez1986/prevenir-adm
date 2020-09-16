@@ -7,6 +7,7 @@ import {
 } from "@angular/fire/database";
 import { Observable } from "rxjs";
 import { rejects } from "assert";
+import { Persona } from '../interfaces/personas';
 
 @Injectable({
   providedIn: "root",
@@ -65,5 +66,14 @@ export class FirebaseService {
       });
 
       return await a
+  }
+
+
+  async updatePersona(persona: any) {
+    let database = this.db.database;
+    let rootRef = database.ref("Personas");
+    const personaFire = (await this.getAllPersons(persona.dni)).val();
+    let idFire = Object.keys(personaFire)[0]
+    rootRef.child(idFire).update(persona);
   }
 }
