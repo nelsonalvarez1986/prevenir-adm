@@ -21,6 +21,8 @@ import { FirebaseService } from "./services/firebase.service";
 import { PersonaComponent } from './pages/persona/persona.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { ShapeService } from './services/shape.service';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,12 +38,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MDBBootstrapModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ComponentsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'coronapp-b1f3c'),
     
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService, ShapeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

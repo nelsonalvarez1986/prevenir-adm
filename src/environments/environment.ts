@@ -15,6 +15,7 @@ export const environment = {
     appId: "1:971835283337:web:0637a51c09501d1970b358",
     measurementId: "G-HM80TBP5GQ"
   },
+  
   mapbox: {
     accessToken: 'pk.eyJ1Ijoicml1eGEiLCJhIjoiY2tidWVzMHllMDNqaDJ5cWg5enY3ZTBnYiJ9.NA3wcpw5hfvFIWF21M1PCQ'
   }

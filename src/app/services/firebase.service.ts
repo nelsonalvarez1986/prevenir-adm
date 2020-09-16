@@ -76,4 +76,24 @@ export class FirebaseService {
     let idFire = Object.keys(personaFire)[0]
     rootRef.child(idFire).update(persona);
   }
+
+  ultimosSieteDias() {
+    /*let d = new Date();
+    let pepe = [-1,-1,-1,-1,-1,-1,-1]
+    let misDias = []
+    pepe.forEach( x => {
+      if ( Number(new Date(d.setDate(d.getDate()  + x )).getDate()) < 10 ) {
+        
+      }
+      ? misDias.push(`0${new Date(d.setDate(d.getDate()  + x )).getDate()}`)
+      : misDias.push(new Date(d.setDate(d.getDate()  + x )).toLocaleDateString() )
+      
+    })
+
+    misDias.map(x => {
+      console.log(x);
+    })
+    
+    return misDias*/
+  }
 }

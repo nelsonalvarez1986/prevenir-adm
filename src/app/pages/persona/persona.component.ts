@@ -83,4 +83,8 @@ export class PersonaComponent implements OnInit {
 
   }
 
+  cancelarEdit() {
+    this.router.navigateByUrl(`/`);
+  }
+
 }

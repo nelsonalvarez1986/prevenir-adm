@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-grafico',
@@ -7,28 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class GraficoComponent implements OnInit {
 
-  @Input() headerType = '';
-  @Input() title = 'Prueba';
-  @Input() alignment = 'center';
-  @Input() src= '';
-  
-  constructor() { }
+  @Input() estadisticaTotal: {};
 
-  ngOnInit(): void {
-  }
-  
   public chartType: string = 'doughnut';
 
-  public chartDatasets: Array<any> = [
-    { data: [300, 50, 100, 40, 120], label: 'My First dataset' }
-  ];
+  public chartDatasets: Array<any>;
 
-  public chartLabels: Array<any> = ['Red', 'Green', 'Yellow', 'Grey', 'Dark Grey'];
+  public chartLabels: Array<any> = ['Positivos', 'Recuperados', 'Sospechosos', 'Fallecidos'];
 
   public chartColors: Array<any> = [
     {
-      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
-      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#616774'],
+      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#0099CC'],
+      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#33b5e5'],
       borderWidth: 2,
     }
   ];
@@ -38,4 +29,23 @@ export class GraficoComponent implements OnInit {
   };
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
+  
+  constructor( private firebase: FirebaseService) { }
+
+  ngOnInit(): void {
+    const a = this.firebase.ultimosSieteDias();
+    /*console.log(a);*/
+
+    this.chartDatasets = [
+      { data: [
+        this.estadisticaTotal['positivos'],
+        this.estadisticaTotal['recuperados'],
+        this.estadisticaTotal['sospechosos'],
+        this.estadisticaTotal['fallecidos'],
+        
+      ]}
+    ];
+  }
+  
+  
 }
