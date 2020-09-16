@@ -14,8 +14,12 @@ export const environment = {
     messagingSenderId: "971835283337",
     appId: "1:971835283337:web:0637a51c09501d1970b358",
     measurementId: "G-HM80TBP5GQ"
+  },
+  mapbox: {
+    accessToken: 'pk.eyJ1Ijoicml1eGEiLCJhIjoiY2tidWVzMHllMDNqaDJ5cWg5enY3ZTBnYiJ9.NA3wcpw5hfvFIWF21M1PCQ'
   }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

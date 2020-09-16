@@ -13,6 +13,7 @@ import { CargandoComponent } from './cargando/cargando.component';
 
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -28,6 +29,7 @@ import { CargandoComponent } from './cargando/cargando.component';
     BrowserAnimationsModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    
   ],
   exports: [
     HeaderComponent,

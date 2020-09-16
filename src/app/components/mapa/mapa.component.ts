@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as Leaflet from 'leaflet';
+import { antPath } from 'leaflet-ant-path';
 
 @Component({
   selector: 'app-mapa',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
