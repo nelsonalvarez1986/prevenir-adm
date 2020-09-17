@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+
 import { map } from "rxjs/operators";
 import {
   AngularFireDatabase,
@@ -7,7 +8,9 @@ import {
 } from "@angular/fire/database";
 import { Observable } from "rxjs";
 import { rejects } from "assert";
-import { Persona } from '../interfaces/personas';
+import { Persona } from "../interfaces/personas";
+import { BarriosService } from "./barrios.service";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
@@ -15,10 +18,15 @@ import { Persona } from '../interfaces/personas';
 export class FirebaseService {
   public personas: any;
   public persona: any;
+  public url = "https://coronapp-b1f3c.firebaseio.com/Personas";
 
-  constructor(private db: AngularFireDatabase) {}
+  constructor(
+    private http: HttpClient,
+    private db: AngularFireDatabase,
+    private barrios: BarriosService
+  ) {}
 
-  async getAllPersons(dni: string | number | boolean) {
+  async getPersonsDni(dni: string | number | boolean) {
     let database = this.db.database;
     let rootRef = database.ref("Personas");
 
@@ -34,8 +42,39 @@ export class FirebaseService {
     return fecha;
   }
 
-  getPersonsBarrios(barrio: any) {
-    return barrio;
+  async getPersonsBarrios() {
+    const BARRIOS = this.barrios.getObjetoBarrios();
+
+    let database = this.db.database;
+    let rootRef = database.ref("Personas");
+
+    BARRIOS.map((b) => {
+      rootRef
+        .orderByChild("barrio")
+        .equalTo(b.barrio)
+        .on("value", function (snapshot) {
+          snapshot.forEach(function (childSnapshot) {
+            if (childSnapshot.val().Estado === "Positivo") {
+              b.positivos = b.positivos + 1;
+            }
+
+            if (childSnapshot.val().Estado === "Alta") {
+              b.recuperados = b.recuperados + 1;
+            }
+
+            if (childSnapshot.val().Estado === "Fallecidos") {
+              b.fallecidos = b.fallecidos + 1;
+            }
+
+            if (childSnapshot.val().Caso_sospechoso === "Si") {
+              b.sospechosos = b.sospechosos + 1;
+            }
+          });
+          b.total = b.fallecidos + b.positivos + b.recuperados + b.sospechosos;
+        });
+    });
+
+    return BARRIOS;
   }
 
   async getPersonsState(estado: string) {
@@ -50,7 +89,7 @@ export class FirebaseService {
         a = snapshot.numChildren();
       });
 
-      return await a
+    return a;
   }
 
   async getPersonsSospechosos() {
@@ -60,40 +99,67 @@ export class FirebaseService {
 
     await rootRef
       .orderByChild("Caso_sospechoso")
-      .equalTo('Si')
+      .equalTo("Si")
       .once("value", async function (snapshot) {
         a = snapshot.numChildren();
       });
 
-      return await a
+    return a;
   }
-
 
   async updatePersona(persona: any) {
     let database = this.db.database;
     let rootRef = database.ref("Personas");
-    const personaFire = (await this.getAllPersons(persona.dni)).val();
-    let idFire = Object.keys(personaFire)[0]
+    const personaFire = (await this.getPersonsDni(persona.dni)).val();
+    let idFire = Object.keys(personaFire)[0];
     rootRef.child(idFire).update(persona);
   }
 
-  ultimosSieteDias() {
-    /*let d = new Date();
-    let pepe = [-1,-1,-1,-1,-1,-1,-1]
-    let misDias = []
-    pepe.forEach( x => {
-      if ( Number(new Date(d.setDate(d.getDate()  + x )).getDate()) < 10 ) {
-        
-      }
-      ? misDias.push(`0${new Date(d.setDate(d.getDate()  + x )).getDate()}`)
-      : misDias.push(new Date(d.setDate(d.getDate()  + x )).toLocaleDateString() )
-      
-    })
+  // Llamadas REST
+  async getAllPersonas() {
+    return new Promise(async (resolve, reject) => {
+      this.http.get(`${this.url}.json?print=pretty`).subscribe(
+        (resp) => {
+          resolve(Object.values(resp));
+        },
+        (error) => reject(error)
+      );
+    });
+  }
 
-    misDias.map(x => {
-      console.log(x);
-    })
+  async barriosConMasPositivos() {
+    const personas = await this.getAllPersonas().then((resp) => resp);
+    return this.totalesBarrio(personas);
+  }
+
+  async totalesBarrio(personas: any) {
+    const BARRIOS = this.barrios.getObjetoBarrios();
+    const estadisticaFinal = [];
+    BARRIOS.forEach((y) => {
+      const personasBarrio = personas.filter((x) => x.barrio === y.barrio);
+      let totalBarrio = {
+        barrio: y.barrio,
+        positivos: 0,
+        recuperados: 0,
+        sospechosos: 0,
+        fallecidos: 0,
+        total: 0,
+      };
+
+      personasBarrio.map((x) => {
+        x.Estado === "Positivo" && totalBarrio.positivos++;
+        x.Estado === "Alta" && totalBarrio.recuperados++;
+        x.Estado === "Fallecido" && totalBarrio.fallecidos++;
+        x.Caso_sospechoso === "Si" && totalBarrio.fallecidos++;
+        totalBarrio.total =
+          totalBarrio.fallecidos +
+          totalBarrio.positivos +
+          totalBarrio.recuperados +
+          totalBarrio.sospechosos;
+      });
+      estadisticaFinal.push(totalBarrio);
+    });
+    return estadisticaFinal
     
-    return misDias*/
   }
 }

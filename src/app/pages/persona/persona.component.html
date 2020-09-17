@@ -2,20 +2,29 @@
   <app-cargando></app-cargando>
 </div>
 
-<div class="container-fluid" *ngIf="!cargando">
-  <div class="caja-datos">
-    <div class="row">
-      <div class="col-12">
+<div class="container-fluid mt-4" *ngIf="!cargando">
+  <div class="caja-datos mt-5">
+    <div class="admin-up">
+      <mdb-icon far icon="user" class="icono-superior primary-color"></mdb-icon>
+    </div>
+    <div class="titulo-caja mb-1 mt-2">
+      <h3 *ngIf="nuevo" class="text-center text-info font-weight-bold"> Alta Nueva Persona </h3>
+    <h3 *ngIf="!nuevo" class="h3 text-center text-info font-weight-bold"> {{persona[0].apellido}} {{persona[0].nombre}} </h3>
+    <h5 *ngIf="!nuevo" class="text-center font-italic text-info font-weight-bold"> {{persona[0].dni}} </h5>  
+    </div>
+    
+    <div class="row mt-0 caja-pildoras">
+      <div class="col-12 d-flex align-content-center justify-content-end align-items-center">
         <span
           *ngIf="persona[0].Personal_esencial"
           class="badge badge-pill badge-info p-2 mr-1"
         >
           <mdb-icon fas icon="user-md"></mdb-icon>
-          Es personal Escencial</span
+          Personal Escencial</span
         >
 
         <span
-          *ngIf="persona[0].Caso_sospechoso"
+          *ngIf=" persona[0].Caso_sospechoso"
           class="badge badge-pill badge-warning p-2"
         >
           <mdb-icon fas icon="exclamation-triangle"></mdb-icon>
@@ -33,7 +42,20 @@
     </div>
     <form #f="ngForm" class="mt-4" novalidate="">
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-3">
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="dni"
+              [(ngModel)]="persona[0].dni"
+              id="dni"
+              class="form-control mb-3"
+            />
+            <label for="dni" class="">Dni</label>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
           <div class="md-form mb-0">
             <input
               mdbInput
@@ -46,7 +68,7 @@
             <label for="apellido" class="">Apellido</label>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-4">
           <div class="md-form mb-0">
             <input
               mdbInput
@@ -62,7 +84,7 @@
       </div>
 
       <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <div class="md-form mb-0">
             <input
               mdbInput
@@ -75,7 +97,7 @@
             <label for="fecha" class="">Fecha Diagnostico</label>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <div class="md-form mb-0">
             <input
               mdbInput
@@ -89,7 +111,7 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-12 col-md-4">
           <div class="md-form mb-0">
             <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona[0].sexo" class="browser-default custom-select">
                 <option [ngValue]="persona[0].sexo" selected>{{persona[0].sexo}}</option>
@@ -110,7 +132,7 @@
       </div>
 
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="md-form mb-0">
             <input
               mdbInput
@@ -123,28 +145,18 @@
             <label for="direc" class="">Direccion</label>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="md-form mb-0">
             <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona[0].barrio" class="browser-default custom-select">
                 <option [ngValue]="persona[0].barrio" selected>{{persona[0].barrio}}</option>
                 <option *ngFor="let barrio of barrios" [ngValue]="barrio">{{barrio}}</option>
-                
             </select>
-            <!--<input
-              mdbInput
-              type="text"
-              name="barrio"
-              
-              id="barrio"
-              class="form-control mb-3"
-            />
-            <label for="barrio" class="">Barrio</label>-->
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="md-form mb-0">
             <input
               mdbInput
@@ -157,7 +169,7 @@
             <label for="telefono" class="">Telefono</label>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="md-form mb-0">
             <input
               mdbInput
@@ -320,12 +332,28 @@
 
             
         </div>
+
+        <div class="row mt-2">
+          <div class="col">
+            <div class="md-form mb-0">
+              <p class="font-weight-bold text-info">Diagnostico / Estado:</p>
+              <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona[0].Estado" class="browser-default custom-select">
+                  <option [ngValue]="persona[0].Estado" selected>{{persona[0].Estado || ''}}</option>
+                  <option value="Positivo" selected>Positivo</option>
+                  <option value="Alta" selected>Alta</option>
+                  <option value="Fallecido" selected>Fallecido</option>
+                  <option value="Negativo" selected>Negativo</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
 
     <div class="row">
       <div class="col-12 col-md-6">
         <button
+          *ngIf="!nuevo"
           (click)="updatePersona(persona[0])"
           class="btn-block mt-4 mb-2"
           mdbBtn
@@ -335,6 +363,19 @@
         >
           <mdb-icon fas class="mr-1" icon="save"></mdb-icon>
           Guardar Cambios
+        </button>
+
+        <button
+          *ngIf="nuevo"
+          (click)="addPersona(persona[0])"
+          class="btn-block mt-4 mb-2"
+          mdbBtn
+          type="button"
+          color="success"
+          mdbWavesEffect
+        >
+          <mdb-icon fas class="mr-1" icon="plus"></mdb-icon>
+          Guardar Persona
         </button>
       </div>
 

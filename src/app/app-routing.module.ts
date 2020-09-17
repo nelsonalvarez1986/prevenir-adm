@@ -7,6 +7,7 @@ import { PersonaComponent } from './pages/persona/persona.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'persona/:dni_persona', component: PersonaComponent },
+  { path: 'persona', component: PersonaComponent },
 ];
 
 @NgModule({

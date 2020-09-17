@@ -26,11 +26,10 @@ export class BusquedaSimpleComponent implements OnInit {
 
   
   buscarTermino(termino) {
-    this.firebase.getAllPersons(termino).then( resp => {
+    this.firebase.getPersonsDni(termino).then( resp => {
       (resp.val())
       ? this.person = Object.values(resp.val())
       : this.person = undefined;
-
       this.realizoBusqueda = true
     });
   }

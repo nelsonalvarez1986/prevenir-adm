@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!cargando">
+<div class="" *ngIf="!cargando">
   
   <div class="row mt-0" *ngIf="!cargando">
     <div class="col-12">
@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-4 mb-4">
     <div class="col-12">
       <app-busqueda-simple></app-busqueda-simple>
     </div>
@@ -18,17 +18,14 @@
     </div>
   </div>
 
-  <div class="row mt-4 mb-5 caja">
-    <div class="col-12 col-md-4">
-      <!--ACA LOS CHARTS-->
-      <div
-        class="d-flex align-content-center justify-content-center align-items-center"
-      >
-        <app-grafico [estadisticaTotal]="cantidades"></app-grafico>
-      </div>
+  <div class="row" *ngIf="!cargando">
+    <div class="col">
+      <app-panel-graficos [arrBarrios] ="arrBarrios"></app-panel-graficos>
     </div>
+  </div>
 
-    <div class="col-12 col-md-8">
+  <div class="row mb-5">
+    <div class="col-12">
       <!--ACA EL MAPA-->
       <div
         class="d-flex align-content-center justify-content-center align-items-center"

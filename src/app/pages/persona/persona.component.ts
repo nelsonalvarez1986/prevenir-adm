@@ -14,9 +14,10 @@ export class PersonaComponent implements OnInit {
 
   public cargando: Boolean = true;
   public dni_persona;
-  public persona: any;
+  public persona: Persona[] = [];
   public barrios: String[];
   public sexos = ['Femenino', 'Masculino'];
+  public nuevo: Boolean = true;
    
 
   constructor( 
@@ -28,12 +29,44 @@ export class PersonaComponent implements OnInit {
 
   async ngOnInit() {
     this.barrios = this.barrioService.getBarrios();
-    this.dni_persona = this.ruta.snapshot.paramMap.get("dni_persona");
-    await this.buscarTermino(this.dni_persona);
+    
+    if (this.ruta.snapshot.paramMap.get("dni_persona")) {
+      this.dni_persona = this.ruta.snapshot.paramMap.get("dni_persona");
+      await this.buscarTermino(this.dni_persona);
+      this.nuevo = false;
+    }else {
+      this.cargando = false;
+      this.persona.push (
+        {
+          Caso_sospechoso: false,
+          Contacto_estrecho: false,
+          Dificultad_respiratoria: false,
+          Dolor_de_garganta: false,
+          Estado: "Negativo",
+          Fecha: "",
+          Fiebre: false,
+          Perdida_gusto_olfato: false,
+          Personal_esencial: false,
+          Tos: false,
+          apellido: "",
+          barrio: "Berisso Centro",
+          direc: "",
+          dni: "",
+          edad: "",
+          email: "",
+          nombre: "",
+          sexo: "Femenino",
+          telefono: "",
+        }
+      );
+    }
+    
+
+
   }
 
   async buscarTermino(dni) {
-    await this.firebase.getAllPersons(dni).then( (resp) => {
+    await this.firebase.getPersonsDni(dni).then( (resp) => {
       if (resp.val()) {
         this.persona = Object.values(resp.val());
       }else {
@@ -51,6 +84,7 @@ export class PersonaComponent implements OnInit {
     this.persona[0].Tos = this.convertirBoolean(this.persona[0].Tos);
 
     this.cargando = false;
+    console.log(this.persona[0]);
   }
 
   convertirBoolean(campo: String){
@@ -66,6 +100,19 @@ export class PersonaComponent implements OnInit {
     :  'Si';
   }
 
+  async addPersona(p) {
+    console.log(p);
+    p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
+    p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
+    p.Dificultad_respiratoria = this.convertirTexto(p.Dificultad_respiratoria);
+    p.Dolor_de_garganta = this.convertirTexto(p.Dolor_de_garganta);
+    p.Fiebre = this.convertirTexto(p.Fiebre);
+    p.Perdida_gusto_olfato = this.convertirTexto(p.Perdida_gusto_olfato);
+    p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
+    p.Tos = this.convertirTexto(p.Tos);
+    console.log(p);
+  }
+  
   async updatePersona( p ) {
     this.cargando = true
     p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);

@@ -1,7 +1,10 @@
 .caja-datos {
     border: 1px solid #f0f0f0;
     border-radius: 16px;
-    padding: 2em;
+    padding-top: 1em;
+    padding-left: 1.4em;
+    padding-right: 1.4em;
+    margin: 0;
     box-shadow:  21px 21px 41px #cfcfcf, 
              -21px -21px 41px #ffffff;
 }
@@ -9,6 +12,37 @@
 .caja-sintomas {
     border: 1px solid #f0f0f0;
     border-radius: 16px;
-    padding: 1.5em;
-    
+    padding: 1.5em;    
 }
+
+.admin-up {
+    height: 10px;
+}
+.admin-up .icono-superior {
+    padding: 1.8rem;
+    font-size: 2.5rem;
+    color: #fff;
+    text-align: left;
+    border-radius: 8px;
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2), 0 2px 13px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 600px) {
+    .titulo-caja {
+      display: none;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .admin-up .icono-superior  {
+      display: none;
+    }
+  }
+
+  @media (max-width: 359px) {
+    .caja-pildoras  {
+      display: none;
+    }
+  }

@@ -13,6 +13,7 @@ import { CargandoComponent } from './cargando/cargando.component';
 import { SeccionEstadisticasComponent } from './seccion-estadisticas/seccion-estadisticas.component';
 import { CardEstadisticaComponent } from './card-estadistica/card-estadistica.component';
 import { CardPersonaBuscadaComponent } from './card-persona-buscada/card-persona-buscada.component';
+import { PanelGraficosComponent } from './panel-graficos/panel-graficos.component';
 
 
 
@@ -28,7 +29,8 @@ import { CardPersonaBuscadaComponent } from './card-persona-buscada/card-persona
     CargandoComponent,
     SeccionEstadisticasComponent,
     CardEstadisticaComponent,
-    CardPersonaBuscadaComponent
+    CardPersonaBuscadaComponent,
+    PanelGraficosComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { CardPersonaBuscadaComponent } from './card-persona-buscada/card-persona
     CargandoComponent,
     SeccionEstadisticasComponent,
     CardEstadisticaComponent,
-    CardPersonaBuscadaComponent
+    CardPersonaBuscadaComponent,
+    PanelGraficosComponent
   ]
 })
 export class ComponentsModule { }

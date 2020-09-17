@@ -1,14 +1,14 @@
 export interface Persona{
-    Caso_sospechoso: String;
-    Contacto_estrecho?: String;
-    Dificultad_respiratoria: String;
-    Dolor_de_garganta: String;
+    Caso_sospechoso: any;
+    Contacto_estrecho?: any;
+    Dificultad_respiratoria: any;
+    Dolor_de_garganta: any;
     Estado: String;
-    Fecha: "", 
-    Fiebre: String;
-    Perdida_gusto_olfato: String;
-    Personal_esencial: String;
-    Tos: String;
+    Fecha: String; 
+    Fiebre: any;
+    Perdida_gusto_olfato: any;
+    Personal_esencial: any;
+    Tos: any;
     apellido: String;
     barrio: String;
     direc: String;

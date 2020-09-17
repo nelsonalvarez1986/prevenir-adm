@@ -18,24 +18,25 @@ export class GraficoComponent implements OnInit {
 
   public chartColors: Array<any> = [
     {
-      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#0099CC'],
-      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#33b5e5'],
+      backgroundColor: ['#F7464A', '#00C851', '#FDB45C', '#0099CC'],
+      hoverBackgroundColor: ['#FF5A5E', '#00C851', '#FFC870', '#33b5e5'],
       borderWidth: 2,
     }
   ];
 
   public chartOptions: any = {
     responsive: true
+
   };
-  public chartClicked(e: any): void { }
+  public chartClicked(e: any): void {
+    
+  }
   public chartHovered(e: any): void { }
   
   constructor( private firebase: FirebaseService) { }
 
   ngOnInit(): void {
-    const a = this.firebase.ultimosSieteDias();
-    /*console.log(a);*/
-
+    console.log(this.estadisticaTotal);
     this.chartDatasets = [
       { data: [
         this.estadisticaTotal['positivos'],

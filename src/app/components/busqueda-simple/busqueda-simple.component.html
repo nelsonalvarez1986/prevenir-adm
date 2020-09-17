@@ -1,32 +1,43 @@
 <div class="mt-3 p-2">
-<div class="caja mb-5">
-<h3 class="text-center font-weight-bold text-info">Buscar Persona</h3>
-<div class="md-form mb-0">
-  <input
-    mdbInput
-    type="text"
-    name="text"
-    [(ngModel)]="termino"
-    id="form1"
-    class="form-control mb-3"
-  />
-  <label for="form1" class=""
-    >Ingrese un DNI o bien una fecha en formato: dd/mm/aaaa</label
-  >
-</div>
 
-<div class="md-form mb-0 mt-0">
-  <button class="mb-0" type="button" size="sm" mdbBtn block="true" color="primary" mdbWavesEffect
-  (click)="buscarTermino(termino)">
-    Buscar
-  </button>
-</div>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div class="caja mb-5 z-depth-1-half">
+      <h5 class="text-center font-weight-bold text-info">Buscar por DNI</h5>
+      <div class="md-form mb-0">
+        <input
+          mdbInput
+          type="text"
+          name="text"
+          [(ngModel)]="termino"
+          id="form1"
+          class="form-control mb-3"
+        />
+        <label for="form1" class=""
+          >Ingrese DNI a buscar</label
+        >
+      </div>
+      
+      <div class="md-form mb-0 mt-0">
+        <button class="mb-0" type="button" size="sm" mdbBtn block="true" color="primary" mdbWavesEffect
+        (click)="buscarTermino(termino)">
+          Buscar
+        </button>
+      </div>
+      
+      </div>
+  </div>
 
-</div>
+  <div *ngIf="!realizoBusqueda" class="col-12 col-md-6">
+    
+  </div>
 
-<div *ngIf="this.person" class="mt-2">
-  <app-card-persona-buscada [personas]="person"></app-card-persona-buscada>
-  <!--<app-lista-personas [personas]="person"></app-lista-personas>-->
+  <div class="col-12 col-md-6">
+    <div *ngIf="this.person" class="">
+      <app-card-persona-buscada [personas]="person"></app-card-persona-buscada>
+    </div>
+  </div>
+
 </div>
 
 <div *ngIf="!this.person && realizoBusqueda">
