@@ -1,0 +1,46 @@
+<div class="container mt-5 mb-5" *ngIf="cargando">
+    <app-cargando></app-cargando>
+</div>
+
+<div class="container" *ngIf="!cargando">
+    <div class="row mt-2">
+        <div class="col-12">
+          <div class="md-form mb-0">
+            <h4 class="text-center font-weight-bold text-info">Seguimiento</h4>
+            <select class="browser-default custom-select" [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona">
+                <option *ngFor="let ps of personasSeguimiento" value='{{ps.apellido}} {{ps.nombre}}' selected>{{ps.apellido}} {{ps.nombre}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 mt-4 mb-5">
+            <button (click)="buscarSeguimiento(persona)" class="btn btn-block btn-secondary">Buscar</button>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="listadoSeguimiento && !cargando">
+    <div class="row mt-4 p-2">
+        <div class="col">
+            <h6 class="text-center font-weight-bold text-info">Listado Personas</h6>
+        </div>
+    </div>
+    <div class="row mt-2 p-2">
+        <div class="col">
+            <app-tabla-personas [personas]="listadoSeguimiento"></app-tabla-personas>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" *ngIf="mostrarAlerta && !cargando">
+    <div class="row mt-2 p-2">
+        <div class="col">
+            <div class="alert alert-warning" role="alert">
+                <mdb-icon fas class="mr-1" icon="thumbs-up"></mdb-icon>
+                Sin personas para seguimiento !
+              </div>
+        </div>
+    </div>
+</div>
+
+

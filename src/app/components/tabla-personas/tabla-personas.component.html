@@ -1,0 +1,28 @@
+<table mdbTable hover="true">
+  <tbody>
+    <tr
+      mdbTableCol
+      *ngFor="let persona of personas"
+      (click)="detallePersona(persona.dni)"
+      style="cursor: pointer;"
+    >
+      <th scope="row" class="text-primary">
+        <mdb-icon fas class="mr-1" icon="id-card"></mdb-icon>  
+        {{ persona.dni }}
+        </th>
+      <td>
+        <mdb-icon fas class="mr-1" icon="user"></mdb-icon>  
+          {{ persona.apellido }} {{ persona.nombre }}
+        </td>
+      <td [ngClass]="{
+        green: persona.Estado === 'Alta',
+        red: persona.Estado === 'Positivo',
+        black: persona.Estado === 'Fallecido',
+        orange: persona.Estado !== 'Alta' && persona.Estado !== 'Positivo' && persona.Estado !== 'Fallecido'
+      }">
+        {{ persona.Estado }}
+
+      </td>
+    </tr>
+  </tbody>
+</table>

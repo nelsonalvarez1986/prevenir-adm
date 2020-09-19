@@ -25,6 +25,7 @@ import { ShapeService } from './services/shape.service';
 import { HttpClientModule } from "@angular/common/http";
 import { PopUpService } from './services/pop-up.service';
 import { ChildComponent } from './child/child.component';
+import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado-seguimiento.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ChildComponent } from './child/child.component';
     HomeComponent,
     PersonaComponent,
     ChildComponent,
+    ListadoSeguimientoComponent,
     
   ],
   imports: [

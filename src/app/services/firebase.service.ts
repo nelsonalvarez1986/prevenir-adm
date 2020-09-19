@@ -18,7 +18,7 @@ import { HttpClient } from "@angular/common/http";
 export class FirebaseService {
   public personas: any;
   public persona: any;
-  public url = "https://coronapp-b1f3c.firebaseio.com/Personas";
+  public url = "https://coronapp-b1f3c.firebaseio.com";
 
   constructor(
     private http: HttpClient,
@@ -123,7 +123,7 @@ export class FirebaseService {
   // Llamadas REST
   async getAllPersonas() {
     return new Promise(async (resolve, reject) => {
-      this.http.get(`${this.url}.json?print=pretty`).subscribe(
+      this.http.get(`${this.url}/Personas.json?print=pretty`).subscribe(
         (resp) => {
           resolve(Object.values(resp));
         },
@@ -166,5 +166,21 @@ export class FirebaseService {
     });
     return estadisticaFinal
     
+  }
+
+  async getAllPersonasSeguimiento() {
+    return new Promise(async (resolve, reject) => {
+      this.http.get(`${this.url}/Seguimiento.json?print=pretty`).subscribe(
+        (resp) => {
+          resolve(Object.values(resp));
+        },
+        (error) => reject(error)
+      );
+    });
+  }
+
+  async getPersonsSeguimiento(personaSegui: String) {
+    const personas: any = await this.getAllPersonas().then((resp) => resp);
+    return personas.filter( p => p.Seguimiento === personaSegui )
   }
 }

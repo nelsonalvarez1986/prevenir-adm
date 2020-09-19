@@ -24,7 +24,7 @@ export class PersonaComponent implements OnInit {
   public barrios: String[];
   public sexos = ['Femenino', 'Masculino'];
   public nuevo: Boolean = true;
-   
+  public personasSeguimiento;
 
   constructor( 
     private firebase: FirebaseService,
@@ -35,6 +35,9 @@ export class PersonaComponent implements OnInit {
 
   async ngOnInit() {
     this.barrios = this.barrioService.getBarrios();
+    
+    this.personasSeguimiento = await this.firebase.getAllPersonasSeguimiento().then(resp => resp);
+    (!this.personasSeguimiento[0]) && this.personasSeguimiento.splice(0,1)
     
     if (this.ruta.snapshot.paramMap.get("dni_persona")) {
       this.dni_persona = this.ruta.snapshot.paramMap.get("dni_persona");
@@ -66,9 +69,6 @@ export class PersonaComponent implements OnInit {
         }
       );
     }
-    
-
-
   }
 
   async buscarTermino(dni) {
