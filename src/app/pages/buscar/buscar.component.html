@@ -1,0 +1,102 @@
+<div class="container">
+  <!-- Form starts -->
+  <form #myForm="ngForm" novalidate>
+      <div class="row">
+          <div class="col-12 col-md-4">
+            <div class="custom-control custom-radio">
+                <input
+                  id="Barrio"
+                  type="radio"
+                  class="custom-control-input"
+                  value="Barrio"
+                  name="gender"
+                  ngModel
+                />
+                <label class="custom-control-label" for="Barrio">Barrio</label>
+              </div>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <div class="custom-control custom-radio">
+                <input
+                  id="Fecha"
+                  type="radio"
+                  class="custom-control-input"
+                  value="Fecha"
+                  name="gender"
+                  ngModel
+                />
+                <label class="custom-control-label" for="Fecha">Fecha</label>
+              </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="custom-control custom-radio">
+                <input
+                  id="Estado"
+                  type="radio"
+                  class="custom-control-input"
+                  value="Estado"
+                  name="gender"
+                  ngModel
+                />
+                <label class="custom-control-label" for="Estado">Estado</label>
+              </div>  
+        </div>
+      </div>
+  </form>
+  
+</div>
+
+<div class="row" *ngIf="myForm.value.gender === 'Barrio'">
+    <div class="col">
+        <div class="md-form mb-0">
+            <h4 class="text-center font-weight-bold text-info">Buscar por Barrio</h4>
+            <select class="browser-default custom-select" [ngModelOptions]="{ standalone: true }" [(ngModel)]="filtro">
+                <option *ngFor="let b of barrios" [value]='b' selected>{{b}}</option>
+            </select>
+        </div>
+        <div class="col-12 mt-4 mb-5">
+            <button (click)="buscarPorBarrio(filtro)" class="btn btn-block btn-primary">Buscar</button>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="myForm.value.gender === 'Fecha'">
+    <div class="col">
+        <div class="md-form mb-0">
+            <h4 class="text-center font-weight-bold text-info">Buscar por Fecha</h4>
+            <div class="md-form mb-0">
+                <input
+                  mdbInput
+                  type="text"
+                  name="fecha"
+                  [(ngModel)]="filtro"
+                  id="fecha"
+                  class="form-control mb-3"
+                  placeholder="Buscar por fecha con el formato dd/mm/aaaa"
+                />
+              </div>
+        </div>
+        <div class="col-12 mt-4 mb-5">
+            <button (click)="buscarPorFecha(filtro)" class="btn btn-block btn-primary">Buscar</button>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="myForm.value.gender === 'Estado'">
+    <div class="col">
+        <div class="md-form mb-0">
+            <h4 class="text-center font-weight-bold text-info">Buscar por Estado</h4>
+            <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="filtro" class="browser-default custom-select">
+                <option value="Positivo" selected>Positivo</option>
+                <option value="Alta" selected>Alta</option>
+                <option value="Fallecido" selected>Fallecido</option>
+                <option value="Sospechoso" selected>Sospechoso</option>
+            </select>
+        </div>
+        <div class="col-12 mt-4 mb-5">
+            <button (click)="buscarPorEstado(filtro)" class="btn btn-block btn-primary">Buscar</button>
+        </div>
+    </div>
+</div>

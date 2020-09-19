@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from "./pages/home/home.component";
 import { PersonaComponent } from './pages/persona/persona.component';
 import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado-seguimiento.component';
+import { BuscarComponent } from './pages/buscar/buscar.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'persona/:dni_persona', component: PersonaComponent },
   { path: 'persona', component: PersonaComponent },
   { path: 'seguimiento', component: ListadoSeguimientoComponent },
+  { path: 'buscar', component: BuscarComponent },
 ];
 
 @NgModule({

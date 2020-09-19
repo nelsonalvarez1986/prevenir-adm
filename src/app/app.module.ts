@@ -26,6 +26,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { PopUpService } from './services/pop-up.service';
 import { ChildComponent } from './child/child.component';
 import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado-seguimiento.component';
+import { BuscarComponent } from './pages/buscar/buscar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado
     PersonaComponent,
     ChildComponent,
     ListadoSeguimientoComponent,
+    BuscarComponent,
     
   ],
   imports: [
