@@ -8,12 +8,13 @@
           <div class="md-form mb-0">
             <h4 class="text-center font-weight-bold text-info">Seguimiento</h4>
             <select class="browser-default custom-select" [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona">
+                <option value='undefined' selected>Listado Completo</option>
                 <option *ngFor="let ps of personasSeguimiento" value='{{ps.apellido}} {{ps.nombre}}' selected>{{ps.apellido}} {{ps.nombre}}</option>
             </select>
           </div>
         </div>
         <div class="col-12 mt-4 mb-5">
-            <button (click)="buscarSeguimiento(persona)" class="btn btn-block btn-secondary">Buscar</button>
+            <button (click)="buscarSeguimiento(persona)" class="btn btn-block btn-primary">Buscar</button>
         </div>
     </div>
 </div>

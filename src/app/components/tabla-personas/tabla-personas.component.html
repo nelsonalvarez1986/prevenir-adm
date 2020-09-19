@@ -1,3 +1,4 @@
+
 <table mdbTable hover="true">
   <tbody>
     <tr
@@ -14,14 +15,17 @@
         <mdb-icon fas class="mr-1" icon="user"></mdb-icon>  
           {{ persona.apellido }} {{ persona.nombre }}
         </td>
-      <td [ngClass]="{
-        green: persona.Estado === 'Alta',
-        red: persona.Estado === 'Positivo',
-        black: persona.Estado === 'Fallecido',
-        orange: persona.Estado !== 'Alta' && persona.Estado !== 'Positivo' && persona.Estado !== 'Fallecido'
+        <td>
+          <mdb-icon fas class="mr-1" icon="phone"></mdb-icon>  
+            {{ persona.telefono }}
+          </td>
+      <td class="font-weight-bold" [ngClass]="{
+        'text-success': persona['Estado'] === 'Alta',
+        'text-danger': persona['Estado'] === 'Positivo',
+        'text-dark': persona['Estado'] === 'Fallecido',
+        'text-warning': persona['Estado'] !== 'Alta' && persona['Estado'] !== 'Positivo' && persona['Estado'] !== 'Fallecido'
       }">
         {{ persona.Estado }}
-
       </td>
     </tr>
   </tbody>

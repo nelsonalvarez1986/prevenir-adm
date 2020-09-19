@@ -27,6 +27,7 @@ export class ListadoSeguimientoComponent implements OnInit {
   }
 
   async buscarSeguimiento(persona) {
+    console.log(persona);
     this.cargando = true
     this.listadoSeguimiento = await this.firebase.getPersonsSeguimiento(persona).then(resp => resp);
     

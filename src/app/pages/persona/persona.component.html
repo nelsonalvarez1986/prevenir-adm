@@ -339,7 +339,7 @@
         </div>
         
         <!--SOLO SI SELECCIONAN POSITIVO SE TIENE QUE HABILITAR ESTE SELECT-->
-        <div class="row mt-2" *ngIf="persona[0].Estado === 'Positivo' ">
+        <div class="row mt-2" *ngIf="persona[0]['Estado'] === 'Positivo' ">
           <div class="col">
             <div class="md-form mb-0">
               <p class="font-weight-bold text-info">Seguimiento</p>
