@@ -15,4 +15,4 @@ export class SeccionEstadisticasComponent implements OnInit {
   ngOnInit(): void {
   }
 
-}
+} 

@@ -12,6 +12,12 @@ import { BarriosService } from '../../services/barrios.service';
 })
 export class PersonaComponent implements OnInit {
 
+  name = 'Angular';
+  nameFromChild: string[] = [];
+  nameFromChildFun(nameFromChild){
+        this.nameFromChild.push(nameFromChild);
+  }
+  
   public cargando: Boolean = true;
   public dni_persona;
   public persona: Persona[] = [];
@@ -110,7 +116,10 @@ export class PersonaComponent implements OnInit {
     p.Perdida_gusto_olfato = this.convertirTexto(p.Perdida_gusto_olfato);
     p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
     p.Tos = this.convertirTexto(p.Tos);
-    console.log(p);
+
+    await this.firebase.addPersona(p);
+    this.cargando = false;
+    this.router.navigateByUrl(`/`);
   }
   
   async updatePersona( p ) {

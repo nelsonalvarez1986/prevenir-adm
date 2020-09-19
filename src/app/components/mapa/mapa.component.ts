@@ -1,8 +1,11 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 //import * as Leaflet from 'leaflet';
 import * as L from 'leaflet';
 import { antPath } from 'leaflet-ant-path';
 import { ShapeService } from '../../services/shape.service';
+import { Cantidades } from '../../interfaces/cantidades';
+import { style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-mapa',
@@ -10,9 +13,13 @@ import { ShapeService } from '../../services/shape.service';
   styleUrls: ['./mapa.component.scss']
 })
 export class MapaComponent implements AfterViewInit {
+
+  @Input() cantidades: Cantidades;
+
   private map;
 
   private states;
+
 
   constructor( private shapeService: ShapeService ) { }
 
@@ -21,6 +28,8 @@ export class MapaComponent implements AfterViewInit {
 
     this.shapeService.getStateShapes().subscribe(states => {
       this.states = states;
+      this.highlightFeature;
+      this.resetFeature;
       this.initStatesLayer();
     });
   }
@@ -51,11 +60,31 @@ export class MapaComponent implements AfterViewInit {
         color: '#008f68',
         fillOpacity: 0.8,
         fillColor: '#6DB65B'
-      })
+      }),
+      onEachFeature: (feature, layer) => (
+        layer.on({
+          mouseover: (e) => (this.highlightFeature(e)),
+          mouseout: (e) => (this.resetFeature(e)),
+        })
+      )
     });
 
     this.map.addLayer(stateLayer);
   }
 
-
+  
+  private highlightFeature(e)  {
+    const layer = e.target;
+    
+  }
+  private resetFeature(e)  {
+    const layer = e.target;
+    layer.setStyle({
+      weight: 3,
+      opacity: 0.5,
+      color: '#19F3BF',
+      fillOpacity: 0.8,
+      fillColor: '#F9BE16'
+    });
+  }
 }

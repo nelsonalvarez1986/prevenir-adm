@@ -19,5 +19,4 @@ export interface Persona{
     sexo: String;
     telefono: String;
 
-
 }

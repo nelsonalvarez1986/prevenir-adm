@@ -332,22 +332,54 @@
 
             
         </div>
-
         <div class="row mt-2">
           <div class="col">
             <div class="md-form mb-0">
               <p class="font-weight-bold text-info">Diagnostico / Estado:</p>
               <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="persona[0].Estado" class="browser-default custom-select">
                   <option [ngValue]="persona[0].Estado" selected>{{persona[0].Estado || ''}}</option>
-                  <option value="Positivo" selected>Positivo</option>
+                  <option ng-model="checked" value="Positivo" selected>Positivo</option>
                   <option value="Alta" selected>Alta</option>
                   <option value="Fallecido" selected>Fallecido</option>
-                  <option value="Negativo" selected>Negativo</option>
+                  <!---<option value="Negativo" selected>Negativo</option>     NO VA    -->
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!--SOLO SI SELECCIONAN POSITIVO SE TIENE QUE HABILITAR ESTE SELECT-->
+        <div class="row mt-2">
+          <div class="col">
+            <div class="md-form mb-0">
+              <p class="font-weight-bold text-info">Seguimiento</p>
+              <select class="browser-default custom-select" ng-hide="checked">
+                
+                  <option value="Roberto" selected>Roberto</option>
+                  <option value="Alberto" selected>Alberto</option>
+                  <option value="Juan" selected>Juan</option>
               </select>
             </div>
           </div>
         </div>
       </div>
+
+      <div style="border-bottom: 1px solid black; padding:1rem; width:90vw;" >
+            <span > Seguimiento </span>
+            <br>
+            <br>
+        <select >
+          <option> Seleccionar </option>    
+           <option *ngFor="let item of nameFromChild "> {{item}} </option>
+        </select>
+      </div>
+      
+      <div style="border-bottom: 1px solid black; padding:1rem;">
+         <span> Child Component </span>
+         <app-child (nameFromChild)="nameFromChildFun($event)"></app-child>
+      </div>
+
+      
+    
     </form>
 
     <div class="row">

@@ -115,6 +115,11 @@ export class FirebaseService {
     rootRef.child(idFire).update(persona);
   }
 
+  async addPersona(persona: any) {
+    let database = this.db.database;
+    let rootRef = database.ref("Personas");
+    rootRef.push(persona);
+  }
   // Llamadas REST
   async getAllPersonas() {
     return new Promise(async (resolve, reject) => {
