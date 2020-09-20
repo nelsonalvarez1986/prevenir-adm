@@ -1,0 +1,11 @@
+.caja-filtros {
+    border: 1px solid #f3f3f3;
+    border-radius: 8px;
+    width: 50%;
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 80%;
+    }
+  }

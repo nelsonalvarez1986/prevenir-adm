@@ -1,43 +1,43 @@
-<div class="" *ngIf="!cargando">
+<app-header></app-header>
+  <div class="container-fluid p-3 mb-0">
+    <div class="" *ngIf="!cargando">
+    <div class="row mt-0 animated fadeInDown" *ngIf="!cargando">
+      <div class="col-12">
+        <app-seccion-estadisticas [cantidades]="cantidades"></app-seccion-estadisticas>
+      </div>
+    </div>
   
-  <div class="row mt-0" *ngIf="!cargando">
-    <div class="col-12">
-      <app-seccion-estadisticas [cantidades]="cantidades"></app-seccion-estadisticas>
+    <div class="row mt-4 mb-4 animated fadeInLeft">
+      <div class="col-12">
+        <app-busqueda-simple></app-busqueda-simple>
+      </div>
     </div>
-  </div>
-
-  <div class="row mt-4 mb-4">
-    <div class="col-12">
-      <app-busqueda-simple></app-busqueda-simple>
+  
+    <div class="row">
+      <div class="col-12 animated fadeIn">
+        <app-card-persona-buscada></app-card-persona-buscada>
+      </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <app-card-persona-buscada></app-card-persona-buscada>
+  
+    <div class="row animated fadeInUp" *ngIf="!cargando">
+      <div class="col">
+        <app-panel-graficos [arrBarrios] ="arrBarrios"></app-panel-graficos>
+      </div>
     </div>
-  </div>
-
-  <div class="row" *ngIf="!cargando">
-    <div class="col">
-      <app-panel-graficos [arrBarrios] ="arrBarrios"></app-panel-graficos>
-    </div>
-  </div>
-
-  <div class="row mb-5">
-    <div class="col-12">
-      <!--ACA EL MAPA-->
-      <div
-        class="d-flex align-content-center justify-content-center align-items-center"
-      >
-        <app-mapa></app-mapa>
+  
+    <div class="row mb-5">
+      <div class="col-12">
+        <!--ACA EL MAPA-->
+        <div
+          class="d-flex align-content-center justify-content-center align-items-center"
+        >
+          <app-mapa></app-mapa>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="container mb-5" *ngIf="cargando">
-    <app-cargando></app-cargando>
-</div>
-
-
+  
+  <div class="container mb-5 animated fadeIn" *ngIf="cargando">
+      <app-cargando></app-cargando>
+  </div>
+  </div>

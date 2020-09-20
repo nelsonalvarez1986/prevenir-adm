@@ -1,8 +1,10 @@
-<div class="container">
+<app-header></app-header>
+<div class="container caja-filtros mt-4 mb-4 z-depth-1-half d-flex align-content-center justify-content-center align-items-center">
   <!-- Form starts -->
-  <form #myForm="ngForm" novalidate>
-      <div class="row">
-          <div class="col-12 col-md-4">
+  <form #myForm="ngForm" novalidate class="animated fadeIn">
+      <h4 class="text-center text-info font-weight-bold mt-3 mb-1 p-2">Seleccione un tipo de Busqueda</h4>
+      <div class="row mt-2 mb-4">
+          <div class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center">
             <div class="custom-control custom-radio">
                 <input
                   id="Barrio"
@@ -11,26 +13,28 @@
                   value="Barrio"
                   name="gender"
                   ngModel
+                  (ngModelChange)="reSearch($event)"
                 />
-                <label class="custom-control-label" for="Barrio">Barrio</label>
+                <label class="custom-control-label blue-grey-text font-weight-bold" for="Barrio">Barrio</label>
               </div>
           </div>
 
-          <div class="col-12 col-md-4">
+          <div class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center">
             <div class="custom-control custom-radio">
                 <input
                   id="Fecha"
                   type="radio"
                   class="custom-control-input"
-                   value="Fecha"
+                 value="Fecha"
                   name="gender"
                   ngModel
+                  (ngModelChange)="reSearch($event)"
                 />
-                <label class="custom-control-label" for="Fecha">Fecha</label>
+                <label class="custom-control-label blue-grey-text font-weight-bold" for="Fecha">Fecha</label>
               </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center">
             <div class="custom-control custom-radio">
                 <input
                   id="Estado"
@@ -39,8 +43,9 @@
                   value="Estado"
                   name="gender"
                   ngModel
+                  (ngModelChange)="reSearch($event)"
                 />
-                <label class="custom-control-label" for="Estado">Estado</label>
+                <label class="custom-control-label blue-grey-text font-weight-bold" for="Estado">Estado</label>
               </div>  
         </div>
       </div>
@@ -48,7 +53,8 @@
   
 </div>
 
-<div class="row" *ngIf="myForm.value.gender === 'Barrio'">
+<div class="container">
+<div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Barrio'">
     <div class="col">
         <div class="md-form mb-0">
             <h4 class="text-center font-weight-bold text-info">Buscar por Barrio</h4>
@@ -62,7 +68,7 @@
     </div>
 </div>
 
-<div class="row" *ngIf="myForm.value.gender === 'Fecha'">
+<div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Fecha'">
     <div class="col">
         <div class="md-form mb-0">
             <h4 class="text-center font-weight-bold text-info">Buscar por Fecha</h4>
@@ -84,7 +90,7 @@
     </div>
 </div>
 
-<div class="row" *ngIf="myForm.value.gender === 'Estado'">
+<div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Estado'">
     <div class="col">
         <div class="md-form mb-0">
             <h4 class="text-center font-weight-bold text-info">Buscar por Estado</h4>
@@ -100,10 +106,14 @@
         </div>
     </div>
 </div>
+</div>
 
-<div class="row mt-2 p-2">
+<div class="container">
+<div class="row mt-2 p-2 mb-5 animated fadeIn">
     <div class="col">
-        <app-tabla-personas [personas]="listadoBarrio"></app-tabla-personas>
+        <app-tabla-personas [personas]="listadoPersonas"></app-tabla-personas>
+        
     </div>
+</div>
 </div>
 

@@ -1,8 +1,10 @@
-<div class="container mt-5 mb-5" *ngIf="cargando">
+<app-header></app-header>
+  <div class="container-fluid p-3 mb-0">
+<div class="container mt-5 mb-5 animated fadeIn" *ngIf="cargando">
     <app-cargando></app-cargando>
 </div>
 
-<div class="container" *ngIf="!cargando">
+<div class="container animated fadeIn" *ngIf="!cargando">
     <div class="row mt-2">
         <div class="col-12">
           <div class="md-form mb-0">
@@ -19,7 +21,7 @@
     </div>
 </div> 
 
-<div class="container" *ngIf="listadoSeguimiento && !cargando">
+<div class="container animated fadeInUp" *ngIf="listadoSeguimiento && !cargando">
     <div class="row mt-4 p-2">
         <div class="col">
             <h6 class="text-center font-weight-bold text-info">Listado Personas</h6>
@@ -43,5 +45,4 @@
         </div>
     </div>
 </div>
-
-
+</div>

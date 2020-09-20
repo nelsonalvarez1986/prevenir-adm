@@ -1,8 +1,10 @@
-<div class="container mb-5" *ngIf="cargando">
+<app-header></app-header>
+  <div class="container-fluid p-3 mb-0">
+<div class="container mb-5 animated fadeIn" *ngIf="cargando">
   <app-cargando></app-cargando>
 </div>
 
-<div class="container-fluid mt-4" *ngIf="!cargando">
+<div class="container-fluid mt-4 animated fadeInUp" *ngIf="!cargando">
   <div class="caja-datos mt-5">
     <div class="admin-up">
       <mdb-icon far icon="user" class="icono-superior primary-color"></mdb-icon>
@@ -398,4 +400,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

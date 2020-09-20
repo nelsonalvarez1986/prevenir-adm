@@ -14,7 +14,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
-}) 
+})
 export class FirebaseService {
   public personas: any;
   public persona: any;
@@ -43,15 +43,14 @@ export class FirebaseService {
     return new Promise(async (resolve, reject) => {
       this.http.get(`${this.url}/Personas.json?print=pretty`).subscribe(
         (resp) => {
-          resolve(Object.values(resp));
-          console.log(resp)
+          const arrBarrio = Object.values(resp);
+          resolve(arrBarrio.filter((x) => x.barrio === barrio));
         },
         (error) => reject(error)
       );
     });
   }
-// Ultimo agregado
-  
+  // Ultimo agregado
 
   getPersonFecha(fecha: any) {
     return fecha;
@@ -179,8 +178,7 @@ export class FirebaseService {
       });
       estadisticaFinal.push(totalBarrio);
     });
-    return estadisticaFinal
-    
+    return estadisticaFinal;
   }
 
   async getAllPersonasSeguimiento() {
@@ -196,6 +194,22 @@ export class FirebaseService {
 
   async getPersonsSeguimiento(personaSegui: String) {
     const personas: any = await this.getAllPersonas().then((resp) => resp);
-    return personas.filter( p => p.Seguimiento === personaSegui )
+    return personas.filter((p) => p.Seguimiento === personaSegui);
   }
+
+  async listaPersonasPorEstado(estado) {
+    if (estado === "Sospechoso") {
+      const personas: any = await this.getAllPersonas().then((resp) => resp);
+      return personas.filter((p) => p.Caso_sospechoso === "Si");
+    } else {
+      const personas: any = await this.getAllPersonas().then((resp) => resp);
+      return personas.filter((p) => p.Estado === estado);
+    }
+  }
+
+  async listaPersonasPorFecha(fecha) {
+      const personas: any = await this.getAllPersonas().then((resp) => resp);
+      return personas.filter((p) => p.Fecha === fecha);
+    }
+
 }
