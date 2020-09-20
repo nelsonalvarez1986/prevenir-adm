@@ -3,11 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from "./pages/home/home.component";
 import { PersonaComponent } from './pages/persona/persona.component';
 import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado-seguimiento.component';
-<<<<<<< HEAD
 import { LoginComponent } from './pages/login/login.component';
-=======
 import { BuscarComponent } from './pages/buscar/buscar.component';
->>>>>>> b7ea8f67f7cdcc1b74ebae32001f60247b1672aa
 
 
 const routes: Routes = [

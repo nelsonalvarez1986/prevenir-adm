@@ -26,11 +26,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { PopUpService } from './services/pop-up.service';
 import { ChildComponent } from './child/child.component';
 import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado-seguimiento.component';
-<<<<<<< HEAD
 import { LoginComponent } from './pages/login/login.component';
-=======
 import { BuscarComponent } from './pages/buscar/buscar.component';
->>>>>>> b7ea8f67f7cdcc1b74ebae32001f60247b1672aa
+
 
 @NgModule({
   declarations: [
@@ -39,11 +37,8 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
     PersonaComponent,
     ChildComponent,
     ListadoSeguimientoComponent,
-<<<<<<< HEAD
     LoginComponent,
-=======
     BuscarComponent,
->>>>>>> b7ea8f67f7cdcc1b74ebae32001f60247b1672aa
     
   ],
   imports: [

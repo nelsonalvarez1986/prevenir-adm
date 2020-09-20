@@ -1,17 +1,24 @@
-<div class="container">
-    <div class="row">
+
+<div class="d-flex align-items-center justify-content-center">
+<img src="../../../assets/bsso.png" alt="bsso" style="width: 125px; height: 125px;">
+
+</div>
+
+<div class="d-flex align-items-center justify-content-center">
     <div class="col-md-6 col-md-offset-3">
     <div class="form-group">
-    <label for="email">Email address:</label>
-    <input type="text" class="form-control" [(ngModel)]="email" placeholder="email">
+    <label for="email" class="text-center font-weight-bold text-info">Email:</label>
+    <input type="text" class="form-control" [(ngModel)]="email" placeholder="Email" class="form-control mb-3">
     </div>
     <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" [(ngModel)]="password" id="pwd" placeholder="password">
+    <label for="pwd" class="text-center font-weight-bold text-info">Contraseña:</label>
+    <input type="password" class="form-control" [(ngModel)]="password" id="pwd" placeholder="Contraseña" class="form-control mb-3">
     </div>
-    <button (click)="signIn()" class="btn btn-default" style="margin-left:5px;">Login</button>
+    <button (click)="signIn()" class="mb-0" size="sm" mdbBtn
+    block="true"
+    color="primary"
+    mdbWavesEffect>Login</button>
     
     </div>
-    <button (click)="signOut()" class="btn btn-primary" *ngIf="authenticationService.userData | async">Logout</button>
-    </div>
+    <button (click)="signOut()" class="mb-0" size="sm" *ngIf="authenticationService.userData | async">Logout</button>
     </div>
