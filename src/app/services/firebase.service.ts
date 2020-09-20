@@ -14,7 +14,7 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
-})
+}) 
 export class FirebaseService {
   public personas: any;
   public persona: any;
@@ -37,6 +37,21 @@ export class FirebaseService {
         return snapshot;
       });
   }
+
+  // Ultimo agregado
+  async buscarPorBarrio(barrio: string | number | boolean) {
+    return new Promise(async (resolve, reject) => {
+      this.http.get(`${this.url}/Personas.json?print=pretty`).subscribe(
+        (resp) => {
+          resolve(Object.values(resp));
+          console.log(resp)
+        },
+        (error) => reject(error)
+      );
+    });
+  }
+// Ultimo agregado
+  
 
   getPersonFecha(fecha: any) {
     return fecha;

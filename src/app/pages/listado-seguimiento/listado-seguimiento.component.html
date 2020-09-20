@@ -17,7 +17,7 @@
             <button (click)="buscarSeguimiento(persona)" class="btn btn-block btn-primary">Buscar</button>
         </div>
     </div>
-</div>
+</div> 
 
 <div class="container" *ngIf="listadoSeguimiento && !cargando">
     <div class="row mt-4 p-2">
@@ -25,7 +25,7 @@
             <h6 class="text-center font-weight-bold text-info">Listado Personas</h6>
         </div>
     </div>
-    <div class="row mt-2 p-2">
+<div class="row mt-2 p-2">
         <div class="col">
             <app-tabla-personas [personas]="listadoSeguimiento"></app-tabla-personas>
         </div>
