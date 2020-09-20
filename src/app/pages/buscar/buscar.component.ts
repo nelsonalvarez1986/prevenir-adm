@@ -32,6 +32,8 @@ export class BuscarComponent implements OnInit {
   }
 
   async buscarPorBarrio(barrio) {
+
+    // Ultimo agregado
     console.log(barrio);
     this.cargando = true
     this.listadoBarrio = await this.firebase.buscarPorBarrio(barrio).then(resp => resp);
