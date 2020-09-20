@@ -5,15 +5,16 @@ import { PersonaComponent } from './pages/persona/persona.component';
 import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado-seguimiento.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
+import { UserGuard } from './guards/user.guard'
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [ UserGuard ] },
   { path: 'login', component: LoginComponent },
-  { path: 'persona/:dni_persona', component: PersonaComponent },
-  { path: 'persona', component: PersonaComponent },
-  { path: 'seguimiento', component: ListadoSeguimientoComponent },
-  { path: 'buscar', component: BuscarComponent },
+  { path: 'persona/:dni_persona', component: PersonaComponent, canActivate: [ UserGuard ] },
+  { path: 'persona', component: PersonaComponent, canActivate: [ UserGuard ] },
+  { path: 'seguimiento', component: ListadoSeguimientoComponent, canActivate: [ UserGuard ] },
+  { path: 'buscar', component: BuscarComponent, canActivate: [ UserGuard ] },
 ];
 
 @NgModule({
