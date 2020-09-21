@@ -44,7 +44,6 @@ export class BuscarComponent implements OnInit {
     this.listadoPersonas = []
     this.cargando = true;
     this.listadoPersonas = await this.firebase.listaPersonasPorFecha(fecha).then(resp => resp);
-    console.log(this.listadoPersonas);
     this.cargando = false;
   }
  
@@ -56,7 +55,6 @@ export class BuscarComponent implements OnInit {
   }
 
   reSearch(cambio) {
-    console.log(cambio);
     this.filtro = ''
   }
 

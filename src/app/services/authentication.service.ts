@@ -19,7 +19,6 @@ export class AuthenticationService {
     this.angularFireAuth
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
-        console.log("You are Successfully logged in!");
         this.router.navigateByUrl('/')
         return res;
       })
@@ -34,7 +33,6 @@ export class AuthenticationService {
   async isLogin(): Promise<boolean> {
     return new Promise( (resolve, reject) => {
         this.userData.subscribe(resp => {
-            console.log(resp);
             if (resp !== null) {
                 resolve(true)
             }else(

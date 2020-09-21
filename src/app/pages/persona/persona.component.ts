@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { Persona } from '../../interfaces/personas';
-import { FormGroup, FormControl } from '@angular/forms';
 import { BarriosService } from '../../services/barrios.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-persona',
@@ -30,13 +30,14 @@ export class PersonaComponent implements OnInit {
     private firebase: FirebaseService,
     private barrioService: BarriosService,
     private ruta: ActivatedRoute,
-    private router: Router
+    private _location: Location
      ) { }
 
   async ngOnInit() {
     this.barrios = this.barrioService.getBarrios();
     
     this.personasSeguimiento = await this.firebase.getAllPersonasSeguimiento().then(resp => resp);
+    
     (!this.personasSeguimiento[0]) && this.personasSeguimiento.splice(0,1)
     
     if (this.ruta.snapshot.paramMap.get("dni_persona")) {
@@ -72,30 +73,21 @@ export class PersonaComponent implements OnInit {
   }
 
   async buscarTermino(dni) {
-    await this.firebase.getPersonsDni(dni).then( (resp) => {
-      if (resp.val()) {
-        this.persona = Object.values(resp.val());
-      }else {
-        this.persona = null;
-      };
-    });
+    this.persona = await this.firebase.getPersonsDni(dni).then(resp => resp);
     
-    this.persona[0].Caso_sospechoso = this.convertirBoolean(this.persona[0].Caso_sospechoso);
+    this.persona[0].Caso_sospechoso = this.convertirBoolean(this.persona[0].Caso_sospechoso) || false;
     this.persona[0].Contacto_estrecho = this.convertirBoolean(this.persona[0].Contacto_estrecho) || false;
-    this.persona[0].Dificultad_respiratoria = this.convertirBoolean(this.persona[0].Dificultad_respiratoria);
-    this.persona[0].Dolor_de_garganta = this.convertirBoolean(this.persona[0].Dolor_de_garganta);
-    this.persona[0].Fiebre = this.convertirBoolean(this.persona[0].Fiebre);
-    this.persona[0].Perdida_gusto_olfato = this.convertirBoolean(this.persona[0].Perdida_gusto_olfato);
-    this.persona[0].Personal_esencial = this.convertirBoolean(this.persona[0].Personal_esencial);
-    this.persona[0].Tos = this.convertirBoolean(this.persona[0].Tos);
-
+    this.persona[0].Dificultad_respiratoria = this.convertirBoolean(this.persona[0].Dificultad_respiratoria) || false;
+    this.persona[0].Dolor_de_garganta = this.convertirBoolean(this.persona[0].Dolor_de_garganta) || false;
+    this.persona[0].Fiebre = this.convertirBoolean(this.persona[0].Fiebre) || false;
+    this.persona[0].Perdida_gusto_olfato = this.convertirBoolean(this.persona[0].Perdida_gusto_olfato) || false;
+    this.persona[0].Personal_esencial = this.convertirBoolean(this.persona[0].Personal_esencial) || false;
+    this.persona[0].Tos = this.convertirBoolean(this.persona[0].Tos) || false;
     this.cargando = false;
-    console.log(this.persona[0]);
   }
 
   convertirBoolean(campo: String){
-    
-    return (campo === 'No' || campo === undefined )
+    return (campo === 'No' || campo === undefined  || campo === null || campo === '' )
     ?  false
     :  true;
   }
@@ -107,7 +99,6 @@ export class PersonaComponent implements OnInit {
   }
 
   async addPersona(p) {
-    console.log(p);
     p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
     p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
     p.Dificultad_respiratoria = this.convertirTexto(p.Dificultad_respiratoria);
@@ -119,7 +110,7 @@ export class PersonaComponent implements OnInit {
 
     await this.firebase.addPersona(p);
     this.cargando = false;
-    this.router.navigateByUrl(`/`);
+    this._location.back();
   }
   
   async updatePersona( p ) {
@@ -135,12 +126,12 @@ export class PersonaComponent implements OnInit {
 
     await this.firebase.updatePersona(p);
     this.cargando = false;
-    this.router.navigateByUrl(`/`);
+    this._location.back();
 
   }
 
   cancelarEdit() {
-    this.router.navigateByUrl(`/`);
+    this._location.back();
   }
 
 }

@@ -1,0 +1,26 @@
+<div class="caja-stats bg-white">
+  <h6 class="text-info font-weight-bold text-center mt-3 mb-1">{{ barrio }}</h6>
+
+  <ul class="mb-1 list-group list-group-flush" *ngIf="data">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+       <small>Positivos</small>
+        <mdb-badge pill="true" danger="true">{{data.positivos}}</mdb-badge>
+    </li>
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <small>Sospechosos</small>
+        <mdb-badge pill="true" warning="true">{{data.sospechosos}}</mdb-badge>
+    </li>
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <small>Recuperados</small>
+        <mdb-badge pill="true" success="true">{{data.recuperados}}</mdb-badge>
+    </li>
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <small>Fallecidos</small>
+        <mdb-badge pill="true" class="bg-dark">{{data.fallecidos}}</mdb-badge>
+    </li>
+    
+  </ul>
+</div>

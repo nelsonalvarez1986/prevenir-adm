@@ -27,8 +27,8 @@ export class BusquedaSimpleComponent implements OnInit {
   
   buscarTermino(termino) {
     this.firebase.getPersonsDni(termino).then( resp => {
-      (resp.val())
-      ? this.person = Object.values(resp.val())
+      (resp)
+      ? this.person = Object.values(resp)
       : this.person = undefined;
       this.realizoBusqueda = true
     });

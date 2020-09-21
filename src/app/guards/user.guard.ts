@@ -18,7 +18,6 @@ export class UserGuard implements CanActivate {
      state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     
       return this.loginServervice.isLogin().then(resp => {
-        console.log(resp);
         if(resp === true) {
           return true
         }else {

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
   selector: 'app-grafico',
@@ -11,11 +10,8 @@ export class GraficoComponent implements OnInit {
   @Input() estadisticaTotal: {};
 
   public chartType: string = 'doughnut';
-
   public chartDatasets: Array<any>;
-
   public chartLabels: Array<any> = ['Positivos', 'Recuperados', 'Sospechosos', 'Fallecidos'];
-
   public chartColors: Array<any> = [
     {
       backgroundColor: ['#F7464A', '#00C851', '#FDB45C', '#0099CC'],
@@ -26,17 +22,16 @@ export class GraficoComponent implements OnInit {
 
   public chartOptions: any = {
     responsive: true
-
   };
   public chartClicked(e: any): void {
     
   }
   public chartHovered(e: any): void { }
   
-  constructor( private firebase: FirebaseService) { }
+  
+  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.estadisticaTotal);
     this.chartDatasets = [
       { data: [
         this.estadisticaTotal['positivos'],

@@ -27,15 +27,8 @@ export class FirebaseService {
   ) {}
 
   async getPersonsDni(dni: string | number | boolean) {
-    let database = this.db.database;
-    let rootRef = database.ref("Personas");
-
-    return rootRef
-      .orderByChild("dni")
-      .equalTo(dni)
-      .once("value", function (snapshot) {
-        return snapshot;
-      });
+    const personas: any = await this.getAllPersonas().then((resp) => resp);
+    return personas.filter(x => x.dni === dni);
   }
 
   // Ultimo agregado
@@ -76,7 +69,7 @@ export class FirebaseService {
               b.recuperados = b.recuperados + 1;
             }
 
-            if (childSnapshot.val().Estado === "Fallecidos") {
+            if (childSnapshot.val().Estado === "Fallecido") {
               b.fallecidos = b.fallecidos + 1;
             }
 
@@ -89,21 +82,6 @@ export class FirebaseService {
     });
 
     return BARRIOS;
-  }
-
-  async getPersonsState(estado: string) {
-    let database = this.db.database;
-    let rootRef = database.ref("Personas");
-    let a: number;
-
-    await rootRef
-      .orderByChild("Estado")
-      .equalTo(estado)
-      .once("value", async function (snapshot) {
-        a = snapshot.numChildren();
-      });
-
-    return a;
   }
 
   async getPersonsSospechosos() {
@@ -124,7 +102,8 @@ export class FirebaseService {
   async updatePersona(persona: any) {
     let database = this.db.database;
     let rootRef = database.ref("Personas");
-    const personaFire = (await this.getPersonsDni(persona.dni)).val();
+    const personaFire = (await this.getPersonsDni(persona.dni));
+    
     let idFire = Object.keys(personaFire)[0];
     rootRef.child(idFire).update(persona);
   }
@@ -148,6 +127,7 @@ export class FirebaseService {
 
   async barriosConMasPositivos() {
     const personas = await this.getAllPersonas().then((resp) => resp);
+    const a = await this.totalesBarrio(personas).then((resp) => resp);
     return this.totalesBarrio(personas);
   }
 
@@ -166,10 +146,10 @@ export class FirebaseService {
       };
 
       personasBarrio.map((x) => {
-        x.Estado === "Positivo" && totalBarrio.positivos++;
-        x.Estado === "Alta" && totalBarrio.recuperados++;
-        x.Estado === "Fallecido" && totalBarrio.fallecidos++;
-        x.Caso_sospechoso === "Si" && totalBarrio.fallecidos++;
+        (x.Estado === "Positivo") && totalBarrio.positivos++;
+        (x.Estado === "Alta") && totalBarrio.recuperados++;
+        (x.Estado === "Fallecido") && totalBarrio.fallecidos++;
+        (x.Caso_sospechoso === "Si") && totalBarrio.sospechosos++;
         totalBarrio.total =
           totalBarrio.fallecidos +
           totalBarrio.positivos +
@@ -194,7 +174,9 @@ export class FirebaseService {
 
   async getPersonsSeguimiento(personaSegui: String) {
     const personas: any = await this.getAllPersonas().then((resp) => resp);
-    return personas.filter((p) => p.Seguimiento === personaSegui);
+    return personaSegui === "completo"
+      ? personas
+      : personas.filter((p) => p.Seguimiento === personaSegui);
   }
 
   async listaPersonasPorEstado(estado) {
@@ -208,8 +190,38 @@ export class FirebaseService {
   }
 
   async listaPersonasPorFecha(fecha) {
-      const personas: any = await this.getAllPersonas().then((resp) => resp);
-      return personas.filter((p) => p.Fecha === fecha);
-    }
+    const personas: any = await this.getAllPersonas().then((resp) => resp);
+    return personas.filter((p) => p.Fecha === fecha);
+  }
 
+
+  async getPersonsState(estado: string) {
+    const personas: any = await this.getAllPersonas().then((resp) => resp);
+    let contador = 0;
+    personas.map((x) => {
+      x.Estado === estado && contador++;
+    });
+    return contador;
+  }
+
+  async estadisticasPorBarrio(barrio) {
+    const personas: any = await this.getAllPersonas().then((resp) => resp);
+    const personasBarrio = personas.filter((x) => x.barrio === barrio);
+    
+    let totalBarrio = {
+        positivos: 0,
+        recuperados: 0,
+        sospechosos: 0,
+        fallecidos: 0,
+      };
+
+    personasBarrio.map((x) => {
+        (x.Estado === "Positivo") && totalBarrio.positivos++;
+        (x.Estado === "Alta") && totalBarrio.recuperados++;
+        (x.Estado === "Fallecido") && totalBarrio.fallecidos++;
+        (x.Caso_sospechoso === "Si") && totalBarrio.sospechosos++;
+      });
+    
+    return totalBarrio
+  }
 }

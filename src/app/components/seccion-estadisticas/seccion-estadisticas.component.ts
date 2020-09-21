@@ -12,7 +12,6 @@ export class SeccionEstadisticasComponent implements OnInit {
   
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() {}
 
 } 

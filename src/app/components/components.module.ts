@@ -15,6 +15,7 @@ import { CardEstadisticaComponent } from './card-estadistica/card-estadistica.co
 import { CardPersonaBuscadaComponent } from './card-persona-buscada/card-persona-buscada.component';
 import { PanelGraficosComponent } from './panel-graficos/panel-graficos.component';
 import { TablaPersonasComponent } from './tabla-personas/tabla-personas.component';
+import { StatsMapComponent } from './stats-map/stats-map.component';
 
 
 
@@ -33,6 +34,7 @@ import { TablaPersonasComponent } from './tabla-personas/tabla-personas.componen
     CardPersonaBuscadaComponent,
     PanelGraficosComponent,
     TablaPersonasComponent,
+    StatsMapComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import { TablaPersonasComponent } from './tabla-personas/tabla-personas.componen
     CardPersonaBuscadaComponent,
     PanelGraficosComponent,
     TablaPersonasComponent,
+    StatsMapComponent,
   ]
 })
 export class ComponentsModule { }

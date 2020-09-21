@@ -17,9 +17,7 @@ export class PanelGraficosComponent implements OnInit {
   async ngOnInit() {
     const barrios = await this.firebase.barriosConMasPositivos().then( resp => resp).catch(error => error)
     const barriosOrdenados = barrios.sort( (a,b) => b.total - a.total );
-
     this.arrBarriosOrdenados = barriosOrdenados.slice(0,3)
-    console.log( this.arrBarriosOrdenados );
   }
 
 }

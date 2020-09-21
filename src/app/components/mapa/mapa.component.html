@@ -2,6 +2,9 @@
 
 <div class="map-container animated fadeInUp">
     <div class="map-frame">
-      <div id="map"></div>
+      <div class="caja-info z-depth-1-half">
+        <app-stats-map [barrio]="barrio" [data]="data" ></app-stats-map>
+      </div>
+      <div class="p-2" id="map"></div>
     </div>
   </div>

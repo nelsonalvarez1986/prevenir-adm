@@ -5,6 +5,7 @@ import { antPath } from 'leaflet-ant-path';
 import { ShapeService } from '../../services/shape.service';
 import { Cantidades } from '../../interfaces/cantidades';
 import { style } from '@angular/animations';
+import { FirebaseService } from '../../services/firebase.service';
 
 
 @Component({
@@ -20,8 +21,11 @@ export class MapaComponent implements AfterViewInit {
 
   private states;
 
+  public barrio: String = '';
+  public data: any;
 
-  constructor( private shapeService: ShapeService ) { }
+  
+  constructor( private shapeService: ShapeService, private firebase: FirebaseService ) { }
 
   ngAfterViewInit(): void {
     this.initMap()
@@ -63,7 +67,7 @@ export class MapaComponent implements AfterViewInit {
       }),
       onEachFeature: (feature, layer) => (
         layer.on({
-          mouseover: (e) => (this.highlightFeature(e)),
+          mouseover: (e) => (this.highlightFeature(e, feature.properties['Name'])),
           mouseout: (e) => (this.resetFeature(e)),
         })
       )
@@ -73,10 +77,12 @@ export class MapaComponent implements AfterViewInit {
   }
 
   
-  private highlightFeature(e)  {
+  private async highlightFeature(e,barrio)  {
     const layer = e.target;
-    
+    this.barrio = barrio;
+    this.data = await this.firebase.estadisticasPorBarrio(barrio).then(resp => resp);
   }
+
   private resetFeature(e)  {
     const layer = e.target;
     layer.setStyle({
@@ -87,4 +93,6 @@ export class MapaComponent implements AfterViewInit {
       fillColor: '#F9BE16'
     });
   }
+
+  
 }
