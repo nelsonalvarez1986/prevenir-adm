@@ -1,0 +1,22 @@
+<table mdbTable class="w-100">
+    <thead>
+      <tr>
+        <th scope="col" class="font-weight-bold text-gray">
+            Barrio
+        </th>
+        <th *ngFor="let head of headElements" scope="col" [class]="head.color">
+            <mdb-icon class="mr-1" fas [icon]="head.icono"></mdb-icon>
+            {{head.descripcion}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let barrio of barrios">
+        <th scope="row text-center"><small class="font-weight-bold text-info">{{barrio.barrio}}</small></th>
+        <td class="text-center"><small class="text-center font-weight-bold text-danger">{{barrio.positivos}}</small></td>
+        <td class="text-center"><small class="text-center font-weight-bold text-warning">{{barrio.sospechosos}}</small></td>
+        <td class="text-center"><small class="text-center font-weight-bold text-success">{{barrio.recuperados}}</small></td>
+        <td class="text-center"><small class="text-center font-weight-bold text-dark">{{barrio.fallecidos}}</small></td>
+      </tr>
+    </tbody>
+  </table>

@@ -17,6 +17,7 @@ import { PanelGraficosComponent } from './panel-graficos/panel-graficos.componen
 import { TablaPersonasComponent } from './tabla-personas/tabla-personas.component';
 import { StatsMapComponent } from './stats-map/stats-map.component';
 import { FooterComponent } from './footer/footer.component';
+import { TablaBarriosComponent } from './tabla-barrios/tabla-barrios.component';
 
 
 
@@ -37,6 +38,7 @@ import { FooterComponent } from './footer/footer.component';
     TablaPersonasComponent,
     StatsMapComponent,
     FooterComponent,
+    TablaBarriosComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import { FooterComponent } from './footer/footer.component';
     TablaPersonasComponent,
     StatsMapComponent,
     FooterComponent,
+    TablaBarriosComponent,
   ]
 })
 export class ComponentsModule { }

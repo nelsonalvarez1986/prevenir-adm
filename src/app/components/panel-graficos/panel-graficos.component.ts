@@ -10,14 +10,16 @@ export class PanelGraficosComponent implements OnInit {
 
   @Input() arrBarrios:[] = [];
 
-  public arrBarriosOrdenados: any[] = [];
+  public arrBarriosOrdenadosGraficos: any[] = [];
+  public arrBarriosOrdenadosTabla: any[] = [];
 
   constructor(private firebase: FirebaseService) { }
 
   async ngOnInit() {
     const barrios = await this.firebase.barriosConMasPositivos().then( resp => resp).catch(error => error)
     const barriosOrdenados = barrios.sort( (a,b) => b.total - a.total );
-    this.arrBarriosOrdenados = barriosOrdenados.slice(0,3)
+    this.arrBarriosOrdenadosGraficos = barriosOrdenados.slice(0,1)
+    this.arrBarriosOrdenadosTabla = barriosOrdenados.slice(1,6)
   }
 
 }

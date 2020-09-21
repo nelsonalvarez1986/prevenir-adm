@@ -1,10 +1,18 @@
 <h3 class="text-center font-weight-bold text-info mb-4">Barrios con mayor cantidad de POSITIVOS</h3>
 <div class="row mt-4">
-    <div class="col-12 col-md-4 mt-4" *ngFor="let barrio of arrBarriosOrdenados">
+    <div class="col-12 col-md-4 mt-4" *ngFor="let barrio of arrBarriosOrdenadosGraficos">
       <div
         class="d-flex align-content-center justify-content-center align-items-center"
       >
         <app-grafico [estadisticaTotal]="barrio"></app-grafico>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-8 mt-1">
+      <div
+        class="d-flex align-content-center justify-content-center align-items-center w-100"
+      >
+        <app-tabla-barrios [barrios]="arrBarriosOrdenadosTabla"></app-tabla-barrios>
       </div>
     </div>
 

@@ -40,6 +40,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
     LoginComponent,
     BuscarComponent,
     
+    
   ],
   imports: [
     BrowserModule,
