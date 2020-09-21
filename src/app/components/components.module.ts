@@ -16,6 +16,7 @@ import { CardPersonaBuscadaComponent } from './card-persona-buscada/card-persona
 import { PanelGraficosComponent } from './panel-graficos/panel-graficos.component';
 import { TablaPersonasComponent } from './tabla-personas/tabla-personas.component';
 import { StatsMapComponent } from './stats-map/stats-map.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -35,6 +36,7 @@ import { StatsMapComponent } from './stats-map/stats-map.component';
     PanelGraficosComponent,
     TablaPersonasComponent,
     StatsMapComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { StatsMapComponent } from './stats-map/stats-map.component';
     PanelGraficosComponent,
     TablaPersonasComponent,
     StatsMapComponent,
+    FooterComponent,
   ]
 })
 export class ComponentsModule { }

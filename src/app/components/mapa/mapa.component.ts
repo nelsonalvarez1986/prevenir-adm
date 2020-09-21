@@ -23,6 +23,7 @@ export class MapaComponent implements AfterViewInit {
 
   public barrio: String = '';
   public data: any;
+  public cargando:boolean = true;
 
   
   constructor( private shapeService: ShapeService, private firebase: FirebaseService ) { }
@@ -78,9 +79,11 @@ export class MapaComponent implements AfterViewInit {
 
   
   private async highlightFeature(e,barrio)  {
+    this.cargando = true;
     const layer = e.target;
     this.barrio = barrio;
     this.data = await this.firebase.estadisticasPorBarrio(barrio).then(resp => resp);
+    this.cargando = false;
   }
 
   private resetFeature(e)  {
@@ -92,6 +95,9 @@ export class MapaComponent implements AfterViewInit {
       fillOpacity: 0.8,
       fillColor: '#F9BE16'
     });
+    this.data = undefined
+    this.barrio = undefined
+
   }
 
   
