@@ -58,6 +58,17 @@ export class MapaComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
+  private getColor(d) {
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+  }
+
   private async initStatesLayer() {
     // Lo saque a otro metodo aparte.
     const positivos = await this.positivosDeLosBarrios().then((resp) => resp);
@@ -65,11 +76,12 @@ export class MapaComponent implements AfterViewInit {
 
     const stateLayer = L.geoJSON(this.states, {
       style: (feature) => ({
-        weight: 3,
-        opacity: 0.5,
-        color: "#008f68",
-        fillOpacity: 0.8,
-        fillColor: "#6DB65B",
+        weight: 2,
+        opacity: 1,
+        color: 'black',
+        dashArray: '3',
+        fillOpacity: 0.7,
+        fillColor: this.getColor(positivos)
       }),
       onEachFeature: (feature, layer) =>
         layer.on({
@@ -90,17 +102,25 @@ export class MapaComponent implements AfterViewInit {
       .estadisticasPorBarrio(barrio)
       .then((resp) => resp);
     this.cargando = false;
+    layer.setStyle({
+     weight: 2,
+    opacity: 1,
+    color: 'black',
+    dashArray: '3',
+    fillOpacity: 0.7,
+    fillColor: this.getColor(this.positivosDeLosBarrios().then((resp) => resp))
+    });
   }
 
   private resetFeature(e) {
     const layer = e.target;
-    layer.setStyle({
-      weight: 3,
-      opacity: 0.5,
-      color: "#19F3BF",
-      fillOpacity: 0.8,
-      fillColor: "#F9BE16",
-    });
+    // layer.setStyle({
+    //   weight: 3,
+    //   opacity: 0.5,
+    //   color: "#19F3BF",
+    //   fillOpacity: 0.8,
+    //   fillColor: "#F9BE16",
+    // });
     this.data = undefined;
     this.barrio = undefined;
   }
