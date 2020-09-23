@@ -81,7 +81,7 @@ export class MapaComponent implements AfterViewInit {
         color: 'black',
         dashArray: '3',
         fillOpacity: 0.7,
-        fillColor: this.getColor(positivos)
+      //fillColor: this.getColor() Hay que cambiar este!
       }),
       onEachFeature: (feature, layer) =>
         layer.on({
@@ -102,14 +102,14 @@ export class MapaComponent implements AfterViewInit {
       .estadisticasPorBarrio(barrio)
       .then((resp) => resp);
     this.cargando = false;
-    layer.setStyle({
-     weight: 2,
-    opacity: 1,
-    color: 'black',
-    dashArray: '3',
-    fillOpacity: 0.7,
-    fillColor: this.getColor(this.positivosDeLosBarrios().then((resp) => resp))
-    });
+    // layer.setStyle({
+    //  weight: 2,
+    // opacity: 1,
+    // color: 'black',
+    // dashArray: '3',
+    // fillOpacity: 0.7,
+    // fillColor: this.getColor(this.positivosDeLosBarrios().then((resp) => resp))
+    // });
   }
 
   private resetFeature(e) {
