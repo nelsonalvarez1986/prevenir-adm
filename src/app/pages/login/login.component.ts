@@ -28,8 +28,11 @@ export class LoginComponent {
   async isLogin(){
     const login = this.authenticationService.userData.subscribe(resp => {
       const l = (resp) ? true : false
+      console.log(l);
       return l
-    }, error => error)
+    }, error => {
+      console.log(error);
+    })
     
     return login
   }

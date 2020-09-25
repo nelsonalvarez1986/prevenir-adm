@@ -4,6 +4,9 @@ import { Observable } from "rxjs";
 import { rejects } from 'assert';
 import { Router } from '@angular/router';
 
+import Swal from 'sweetalert2'
+
+
 @Injectable({
   providedIn: "root",
 })
@@ -22,7 +25,15 @@ export class AuthenticationService {
         this.router.navigateByUrl('/')
         return res;
       })
-      .catch((error) => error);
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Usuario y/o Password incorrectos.',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
+      });
   }
 
   /* Sign out */

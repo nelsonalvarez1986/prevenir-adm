@@ -4,6 +4,7 @@ import { FirebaseService } from '../../services/firebase.service';
 import { Persona } from '../../interfaces/personas';
 import { BarriosService } from '../../services/barrios.service';
 import {Location} from '@angular/common';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-persona',
@@ -107,8 +108,24 @@ export class PersonaComponent implements OnInit {
     p.Perdida_gusto_olfato = this.convertirTexto(p.Perdida_gusto_olfato);
     p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
     p.Tos = this.convertirTexto(p.Tos);
-
-    await this.firebase.addPersona(p);
+    
+    await this.firebase.addPersona(p).then(resp => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Persona cargada correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }).catch(error => {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error al cargar a la Persona, por favor intente nuevamente mas tarde.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
     this.cargando = false;
     this._location.back();
   }
@@ -124,7 +141,23 @@ export class PersonaComponent implements OnInit {
     p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
     p.Tos = this.convertirTexto(p.Tos);
 
-    await this.firebase.updatePersona(p);
+    await this.firebase.updatePersona(p).then(resp => {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Datos de la Persona actualizados correctamente',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }).catch(error => {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error al actualizar a la Persona, por favor intente nuevamente mas tarde.',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
     this.cargando = false;
     this._location.back();
 

@@ -30,6 +30,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +41,6 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
     ListadoSeguimientoComponent,
     LoginComponent,
     BuscarComponent,
-    
-    
   ],
   imports: [
     BrowserModule,

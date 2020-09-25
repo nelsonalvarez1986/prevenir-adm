@@ -8,6 +8,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { UserGuard } from './guards/user.guard'
 
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [ UserGuard ] },
   { path: 'login', component: LoginComponent },

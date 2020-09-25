@@ -42,13 +42,14 @@ export class MapaComponent implements AfterViewInit {
   private initMap(): void {
     this.map = L.map("map", {
       center: [-34.9007213, -57.8646547],
-      zoom: 12,
+      zoom: 13,
     });
 
     const tiles = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {
-        maxZoom: 19,
+        maxZoom: 13,
+        minZoom: 13,
         attribution:
           '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }
@@ -58,30 +59,27 @@ export class MapaComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  private getColor(d) {
-    return d > 1000 ? '#800026' :
-           d > 500  ? '#BD0026' :
-           d > 200  ? '#E31A1C' :
-           d > 100  ? '#FC4E2A' :
-           d > 50   ? '#FD8D3C' :
-           d > 20   ? '#FEB24C' :
-           d > 10   ? '#FED976' :
+  private getColor(barrio, d) {
+    let positivos = d.find(x => x.barrio === barrio)
+    return positivos.positivos > 1000 ? '#800026' :
+           positivos.positivos > 500  ? '#BD0026' :
+           positivos.positivos > 100  ? '#E31A1C' :
+           positivos.positivos > 50  ? '#FC4E2A' :
+           positivos.positivos > 25   ? '#FD8D3C' :
+           positivos.positivos > 15   ? '#FEB24C' :
+           positivos.positivos > 5   ? '#FED976' :
                       '#FFEDA0';
   }
 
   private async initStatesLayer() {
-    // Lo saque a otro metodo aparte.
     const positivos = await this.positivosDeLosBarrios().then((resp) => resp);
-    console.log(positivos); // borrar al terminar
-
     const stateLayer = L.geoJSON(this.states, {
       style: (feature) => ({
         weight: 2,
         opacity: 1,
-        color: 'black',
+        color: this.getColor(feature.properties["Name"], positivos),
         dashArray: '3',
         fillOpacity: 0.7,
-      //fillColor: this.getColor() Hay que cambiar este!
       }),
       onEachFeature: (feature, layer) =>
         layer.on({
@@ -102,25 +100,10 @@ export class MapaComponent implements AfterViewInit {
       .estadisticasPorBarrio(barrio)
       .then((resp) => resp);
     this.cargando = false;
-    // layer.setStyle({
-    //  weight: 2,
-    // opacity: 1,
-    // color: 'black',
-    // dashArray: '3',
-    // fillOpacity: 0.7,
-    // fillColor: this.getColor(this.positivosDeLosBarrios().then((resp) => resp))
-    // });
   }
 
   private resetFeature(e) {
     const layer = e.target;
-    // layer.setStyle({
-    //   weight: 3,
-    //   opacity: 0.5,
-    //   color: "#19F3BF",
-    //   fillOpacity: 0.8,
-    //   fillColor: "#F9BE16",
-    // });
     this.data = undefined;
     this.barrio = undefined;
   }
