@@ -16,9 +16,7 @@ export class MapaComponent implements AfterViewInit {
   @Input() cantidades: Cantidades;
 
   private map;
-
   private states;
-
   public barrio: String = "";
   public data: any;
   public cargando: boolean = true;
