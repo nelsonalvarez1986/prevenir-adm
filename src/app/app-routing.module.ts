@@ -9,6 +9,7 @@ import { UserGuard } from './guards/user.guard'
 
 
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [ UserGuard ] },
   { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'persona', component: PersonaComponent, canActivate: [ UserGuard ] },
   { path: 'seguimiento', component: ListadoSeguimientoComponent, canActivate: [ UserGuard ] },
   { path: 'buscar', component: BuscarComponent, canActivate: [ UserGuard ] },
+
 ];
 
 @NgModule({

@@ -41,7 +41,7 @@ export class MapaComponent implements AfterViewInit {
 
   private initMap(): void {
     this.map = L.map("map", {
-      center: [-34.9007213, -57.8646547],
+      center: [-34.8952268,-57.8773563],
       zoom: 13,
     });
 
@@ -77,9 +77,10 @@ export class MapaComponent implements AfterViewInit {
       style: (feature) => ({
         weight: 2,
         opacity: 1,
-        color: this.getColor(feature.properties["Name"], positivos),
+        color: 'black',
         dashArray: '3',
         fillOpacity: 0.7,
+        fillColor: this.getColor(feature.properties["Name"], positivos)
       }),
       onEachFeature: (feature, layer) =>
         layer.on({
