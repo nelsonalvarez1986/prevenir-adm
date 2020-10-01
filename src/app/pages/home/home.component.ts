@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Cantidades } from '../../interfaces/cantidades';
+import { UserIdleService } from 'angular-user-idle';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +11,23 @@ import { Cantidades } from '../../interfaces/cantidades';
 export class HomeComponent implements OnInit {
 
   public cargando: boolean = true;
-  
+
   public cantidades: Cantidades
 
   public arrBarrios: any[];
 
-  constructor( private firebase: FirebaseService) { }
+  constructor( 
+    private firebase: FirebaseService,
+    private userIdle: UserIdleService
+    ) { }
 
   async ngOnInit() {
+
+    this.userIdle.startWatching();
+      
+    this.userIdle.onTimerStart().subscribe(count => console.log(count));
+
+    this.userIdle.onTimeout().subscribe(() => console.log('Time is up!'));
 
     this.cantidades = {
       positivos: await this.firebase.getPersonsState('Positivo').then( resp => resp),
@@ -27,6 +37,10 @@ export class HomeComponent implements OnInit {
     }
     
     this.cargando = false;
+  }
+
+  startWatching() {
+    this.userIdle.startWatching();
   }
 
 }

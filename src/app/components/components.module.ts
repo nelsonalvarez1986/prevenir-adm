@@ -22,6 +22,7 @@ import { TablaBarriosComponent } from './tabla-barrios/tabla-barrios.component';
 
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -39,6 +40,7 @@ import { TablaBarriosComponent } from './tabla-barrios/tabla-barrios.component';
     StatsMapComponent,
     FooterComponent,
     TablaBarriosComponent,
+
   ],
   imports: [
     CommonModule,

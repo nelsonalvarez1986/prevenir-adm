@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Router } from '@angular/router';
-
+ 
 @Component({
   selector: 'app-listado-seguimiento',
   templateUrl: './listado-seguimiento.component.html',

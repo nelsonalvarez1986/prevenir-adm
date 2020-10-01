@@ -119,7 +119,7 @@ export class PersonaComponent implements OnInit {
       })
     }).catch(error => {
       Swal.fire({
-        position: 'center',
+        position: 'center', 
         icon: 'error',
         title: 'Error al cargar a la Persona, por favor intente nuevamente mas tarde.',
         showConfirmButton: false,

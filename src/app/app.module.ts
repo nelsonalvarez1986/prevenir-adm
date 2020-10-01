@@ -19,7 +19,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { FirebaseService } from "./services/firebase.service";
 import { PersonaComponent } from './pages/persona/persona.component';
-
+import { UserIdleModule } from 'angular-user-idle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShapeService } from './services/shape.service';
 import { HttpClientModule } from "@angular/common/http";
@@ -28,6 +28,7 @@ import { ChildComponent } from './child/child.component';
 import { ListadoSeguimientoComponent } from './pages/listado-seguimiento/listado-seguimiento.component';
 import { LoginComponent } from './pages/login/login.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
+
 
 
 
@@ -53,7 +54,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
     ComponentsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'coronapp-b1f3c'),
-    
+    UserIdleModule.forRoot({idle: 600, timeout: 300, ping: 120})
   ],
   providers: [FirebaseService, ShapeService, PopUpService],
   bootstrap: [AppComponent]
