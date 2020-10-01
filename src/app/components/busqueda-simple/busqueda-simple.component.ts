@@ -30,6 +30,7 @@ export class BusquedaSimpleComponent implements OnInit {
       (resp)
       ? this.person = Object.values(resp)
       : this.person = undefined;
+
       this.realizoBusqueda = true
     });
   }

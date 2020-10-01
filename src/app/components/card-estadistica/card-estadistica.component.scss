@@ -1,5 +1,53 @@
+#flechaIr {
+    opacity: 0 !important;
+    height: 80px;
+    left: 83%;
+    top: 24%;
+    position: absolute;
+}
+.classic-admin-card {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.75s;
+    box-shadow: 0 0 #444 inset,
+                0 0 #444 inset;    
+
+    &:hover {
+        box-shadow: 340px 0 #444 inset,
+                    -340px 0 #444 inset;
+        #flechaIr {
+            opacity: 0.85 !important;
+            color: #fff;
+        }
+    }
+}
+
+h3 {
+    opacity: 0;
+    left: 80%;
+    top: 25%;
+    font-weight: 900;
+    position: absolute;
+}
+
+.img-card-estadistica {
+    opacity: 0.25;
+    height: 80px;
+    left: 67%;
+    top: 14%;
+    position: absolute;
+}
+
+mdb-icon {
+    opacity: 0.5;
+}
+
+p {
+    opacity: 1 !important;
+}
+
 .classic-admin-card .card-body {
-    width: 240px;
+    width: 300px;
     color: #fff;
     margin-bottom: 0;
     padding: 0.9rem;
@@ -25,20 +73,86 @@
     opacity: 0.7;
 }
 
+.icono-fondo {
+
+}
+
+@media (max-width: 1228px) {
+    .classic-admin-card .card-body {
+      width: 260px;   
+    }
+
+    #flechaIr {
+        opacity: 0 !important;
+        left: 82%;
+        top: 24%;
+        position: absolute;
+    }
+  
+  .img-card-estadistica {
+    left: 61%;
+  }
+}
+
+@media (max-width: 1068px) {
+    .classic-admin-card .card-body {
+      width: 240px;
+  }
+
+  #flechaIr {
+    opacity: 0 !important;
+    left: 78%;
+    top: 24%;
+    position: absolute;
+}
+}
+
+
 @media (max-width: 995px) {
   .classic-admin-card .card-body {
     width: 200px;
 }
+
+.img-card-estadistica {
+    opacity: 0.25;
+    height: 80px;
+    left: 52%;
+    top: 14%;
+    position: absolute;
+}
+
 }
 
 @media (max-width: 850px) {
   .classic-admin-card .card-body {
     width: 180px;
 }
+.img-card-estadistica {
+    opacity: 0.25;
+    height: 68px;
+    left: 50%;
+    top: 14%;
+    position: absolute;
+}
+
+#flechaIr {
+    opacity: 0 !important;
+    left: 75%;
+    top: 24%;
+    position: absolute;
+}
 }
 
 @media (max-width: 386px) {
   .classic-admin-card .card-body {
-    width: 130px;
+    width: 120px;
+}
+#flechaIr {
+    
+    display: none;
+}
+
+.img-card-estadistica {
+    display: none;
 }
 }

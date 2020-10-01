@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-estadistica',
@@ -12,8 +13,12 @@ export class CardEstadisticaComponent implements OnInit {
   @Input() titulo: string;
   @Input() icono: string;
   
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {}
+
+  navegarEstado() {
+    this.router.navigate(['/buscar'], { queryParams: { estado: this.titulo } });
+  }
 
 }

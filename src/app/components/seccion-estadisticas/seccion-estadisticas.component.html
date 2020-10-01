@@ -4,27 +4,25 @@
     <div class="row">
 
         <!--Grid column-->
-        <div class="col-6 col-md-3 w-100">
-            <div class="w-100 d-flex align-content-center justify-content-center align-items-center">
-                <app-card-estadistica [cantidad]="cantidades.positivos" color="danger-color" titulo='Positivos' icono="briefcase-medical" ></app-card-estadistica>
-            </div>
+        <div class="col-6 col-md-3 d-flex align-content-center justify-content-center align-items-center mt-3">
+            <app-card-estadistica [cantidad]="cantidades.positivos" color="danger-color" titulo='Positivos' icono="briefcase-medical" ></app-card-estadistica>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-6 col-md-3 d-flex align-content-center justify-content-center align-items-center">          
+        <div class="col-6 col-md-3 d-flex align-content-center justify-content-center align-items-center mt-3">          
             <app-card-estadistica [cantidad]="cantidades.sospechosos" color="warning-color" titulo='Sospechosos' icono="file-medical" ></app-card-estadistica>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-6 col-md-3 d-flex align-content-center justify-content-center align-items-center">          
+        <div class="col-6 col-md-3 d-flex align-content-center justify-content-center align-items-center mt-3">          
             <app-card-estadistica [cantidad]="cantidades.recuperados" color="success-color" titulo='Recuperados' icono="clinic-medical" ></app-card-estadistica>
         </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-6 col-md-3 d-flex align-content-center justify-content-start align-items-center">          
+        <div class="col-6 col-md-3 d-flex align-content-center justify-content-center align-items-center mt-3">          
             <app-card-estadistica [cantidad]="cantidades.fallecidos" color="info-color" titulo='Fallecidos' icono="book-dead" ></app-card-estadistica>
         </div>
         <!--Grid column-->

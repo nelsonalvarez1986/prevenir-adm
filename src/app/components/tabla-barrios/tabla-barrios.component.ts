@@ -34,8 +34,6 @@ export class TablaBarriosComponent implements OnInit {
   
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.barrios);
-  }
+  ngOnInit(): void {}
 
 }

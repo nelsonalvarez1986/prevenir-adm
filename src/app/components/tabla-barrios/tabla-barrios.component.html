@@ -6,7 +6,7 @@
         </th>
         <th *ngFor="let head of headElements" scope="col" [class]="head.color">
             <mdb-icon class="mr-1" fas [icon]="head.icono"></mdb-icon>
-            {{head.descripcion}}
+            <span>{{head.descripcion}}</span>
         </th>
       </tr>
     </thead>

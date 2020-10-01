@@ -1,12 +1,18 @@
-<mdb-card [bgColor]="color" class="mt-1 classic-admin-card">
+
+<mdb-card [bgColor]="color" class="mt-1 classic-admin-card" (click)="navegarEstado()">
+    <img src="../../../assets/bsso.png" class="img-card-estadistica" alt="">
+    
+    
+        <mdb-icon id="flechaIr" fas icon='chevron-right' size="4x"></mdb-icon>
+    
   <mdb-card-body>
-      <div class="pull-right">
+      <div class="pull-right caja-icono">
           <mdb-icon fas [icon]='icono'></mdb-icon>
       </div>
-      <p class="white-text">{{titulo}}</p>
-      <h4>
+      <p class="white-text h3">{{titulo}}</p>
+      <h2>
           <strong>{{cantidad}}</strong>
-      </h4>
+      </h2>
   </mdb-card-body>
   
 </mdb-card>

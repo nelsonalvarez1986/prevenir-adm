@@ -1,119 +1,185 @@
 <app-header></app-header>
-<div class="container caja-filtros mt-4 mb-4 z-depth-1-half d-flex align-content-center justify-content-center align-items-center">
-  <!-- Form starts -->
-  <form #myForm="ngForm" novalidate class="animated fadeIn">
-      <h4 class="text-center text-info font-weight-bold mt-3 mb-1 p-2">Seleccione un tipo de Busqueda</h4>
-      <div class="row mt-2 mb-4">
-          <div class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center">
-            <div class="custom-control custom-radio">
-                <input
-                  id="Barrio"
-                  type="radio"
-                  class="custom-control-input"
-                  value="Barrio"
-                  name="gender"
-                  ngModel
-                  (ngModelChange)="reSearch($event)"
-                />
-                <label class="custom-control-label blue-grey-text font-weight-bold" for="Barrio">Barrio</label>
-              </div>
-          </div>
 
-          <div class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center">
-            <div class="custom-control custom-radio">
-                <input
-                  id="Fecha"
-                  type="radio"
-                  class="custom-control-input"
-                 value="Fecha"
-                  name="gender"
-                  ngModel
-                  (ngModelChange)="reSearch($event)"
-                />
-                <label class="custom-control-label blue-grey-text font-weight-bold" for="Fecha">Fecha</label>
-              </div>
+<h2
+  *ngIf="!vienedeHome"
+  class="text-center font-weight-bold text-info mt-4"
+>
+  Listado Casos: {{ titulo }}
+</h2>
+
+<div *ngIf="vienedeHome">
+  <div
+    class="container caja-filtros mt-4 mb-4 z-depth-1-half d-flex align-content-center justify-content-center align-items-center"
+  >
+    <!-- Form starts -->
+    <form #myForm="ngForm" novalidate class="animated fadeIn">
+      <h4 class="text-center text-info font-weight-bold mt-3 mb-1 p-2">
+        Seleccione un tipo de Busqueda
+      </h4>
+      <div class="row mt-2 mb-4">
+        <div
+          class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center"
+        >
+          <div class="custom-control custom-radio">
+            <input
+              id="Barrio"
+              type="radio"
+              class="custom-control-input"
+              value="Barrio"
+              name="gender"
+              ngModel
+              (ngModelChange)="reSearch($event)"
+            />
+            <label
+              class="custom-control-label blue-grey-text font-weight-bold"
+              for="Barrio"
+              >Barrio</label
+            >
+          </div>
         </div>
 
-        <div class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center">
-            <div class="custom-control custom-radio">
-                <input
-                  id="Estado"
-                  type="radio"
-                  class="custom-control-input"
-                  value="Estado"
-                  name="gender"
-                  ngModel
-                  (ngModelChange)="reSearch($event)"
-                />
-                <label class="custom-control-label blue-grey-text font-weight-bold" for="Estado">Estado</label>
-              </div>  
+        <div
+          class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center"
+        >
+          <div class="custom-control custom-radio">
+            <input
+              id="Fecha"
+              type="radio"
+              class="custom-control-input"
+              value="Fecha"
+              name="gender"
+              ngModel
+              (ngModelChange)="reSearch($event)"
+            />
+            <label
+              class="custom-control-label blue-grey-text font-weight-bold"
+              for="Fecha"
+              >Fecha</label
+            >
+          </div>
+        </div>
+
+        <div
+          class="mt-2 mb-2 col-12 col-md-4 d-flex align-content-center justify-content-center align-items-center"
+        >
+          <div class="custom-control custom-radio">
+            <input
+              id="Estado"
+              type="radio"
+              class="custom-control-input"
+              value="Estado"
+              name="gender"
+              ngModel
+              (ngModelChange)="reSearch($event)"
+            />
+            <label
+              class="custom-control-label blue-grey-text font-weight-bold"
+              for="Estado"
+              >Estado</label
+            >
+          </div>
         </div>
       </div>
-  </form>
-  
-</div>
+    </form>
+  </div>
 
-<div class="container">
-<div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Barrio'">
-    <div class="col">
+  <div class="container">
+    <div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Barrio'">
+      <div class="col">
         <div class="md-form mb-0">
-            <h4 class="text-center font-weight-bold text-info">Buscar por Barrio</h4>
-            <select class="browser-default custom-select" [ngModelOptions]="{ standalone: true }" [(ngModel)]="filtro">
-                <option *ngFor="let b of barrios" [value]='b' selected>{{b}}</option>
-            </select>
+          <h4 class="text-center font-weight-bold text-info">
+            Buscar por Barrio
+          </h4>
+          <select
+            class="browser-default custom-select"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="filtro"
+          >
+            <option *ngFor="let b of barrios" [value]="b" selected>
+              {{ b }}
+            </option>
+          </select>
         </div>
         <div class="col-12 mt-4 mb-5">
-            <button (click)="buscarPorBarrio(filtro)" class="btn btn-block btn-primary">Buscar</button>
+          <button
+            (click)="buscarPorBarrio(filtro)"
+            class="btn btn-block btn-primary"
+          >
+            Buscar
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Fecha'">
-    <div class="col">
+    <div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Fecha'">
+      <div class="col">
         <div class="md-form mb-0">
-            <h4 class="text-center font-weight-bold text-info">Buscar por Fecha</h4>
-            <div class="md-form mb-0">
-                <input
-                  mdbInput
-                  type="text"
-                  name="fecha"
-                  [(ngModel)]="filtro"
-                  id="fecha"
-                  class="form-control mb-3"
-                  placeholder="Buscar por fecha con el formato dd/mm/aaaa"
-                />
-              </div>
+          <h4 class="text-center font-weight-bold text-info">
+            Buscar por Fecha
+          </h4>
+          <div class="md-form mb-0">
+            <input
+              mdbInput
+              type="text"
+              name="fecha"
+              [(ngModel)]="filtro"
+              id="fecha"
+              class="form-control mb-3"
+              placeholder="Buscar por fecha con el formato dd/mm/aaaa"
+            />
+          </div>
         </div>
         <div class="col-12 mt-4 mb-5">
-            <button (click)="buscarPorFecha(filtro)" class="btn btn-block btn-primary">Buscar</button>
+          <button
+            (click)="buscarPorFecha(filtro)"
+            class="btn btn-block btn-primary"
+          >
+            Buscar
+          </button>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Estado'">
-    <div class="col">
+    <div class="row animated fadeIn" *ngIf="myForm.value.gender === 'Estado'">
+      <div class="col">
         <div class="md-form mb-0">
-            <h4 class="text-center font-weight-bold text-info">Buscar por Estado</h4>
-            <select [ngModelOptions]="{ standalone: true }" [(ngModel)]="filtro" class="browser-default custom-select">
-                <option value="Positivo" selected>Positivo</option>
-                <option value="Alta" selected>Alta</option>
-                <option value="Fallecido" selected>Fallecido</option>
-                <option value="Sospechoso" selected>Sospechoso</option>
-            </select>
+          <h4 class="text-center font-weight-bold text-info">
+            Buscar por Estado
+          </h4>
+          <select
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="filtro"
+            class="browser-default custom-select"
+          >
+            <option value="Positivo" selected>Positivo</option>
+            <option value="Alta" selected>Alta</option>
+            <option value="Fallecido" selected>Fallecido</option>
+            <option value="Sospechoso" selected>Sospechoso</option>
+          </select>
         </div>
         <div class="col-12 mt-4 mb-5">
-            <button (click)="buscarPorEstado(filtro)" class="btn btn-block btn-primary">Buscar</button>
+          <button
+            (click)="buscarPorEstado(filtro)"
+            class="btn btn-block btn-primary"
+          >
+            Buscar
+          </button>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>
 
-<div class="container">
-<div class="row mt-2 p-2 mb-5 animated fadeIn">
+<div class="container" *ngIf="!cargando">
+  <div class="row mt-2 p-2 mb-5 animated fadeIn">
     <div class="col">
-        <app-tabla-personas [personas]="listadoPersonas"></app-tabla-personas>
-        
+      <app-tabla-personas [personas]="listadoPersonas"></app-tabla-personas>
     </div>
-</div>
+  </div>
 </div>
 
+<div
+  class="container caja-filtros mt-5 z-depth-1-half d-flex align-content-center justify-content-center align-items-center"
+>
+  <app-cargando *ngIf="cargando"></app-cargando>
+</div>
