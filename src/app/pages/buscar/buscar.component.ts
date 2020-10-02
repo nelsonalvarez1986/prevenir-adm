@@ -59,8 +59,6 @@ export class BuscarComponent implements OnInit {
     } else {
       this.cargando = false;
     }
-
-    console.log(this.vienedeHome);
   }
 
   async buscarPorBarrio(barrio) {
@@ -84,7 +82,6 @@ export class BuscarComponent implements OnInit {
   }
 
   async buscarPorEstado(estado) {
-    console.log(estado);
     this.listadoPersonas = [];
     this.cargando = true;
     this.listadoPersonas = await this.firebase

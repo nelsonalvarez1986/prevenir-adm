@@ -46,7 +46,6 @@ export class AuthenticationService {
         return res;
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           title: 'Error!',
           text: 'Usuario y/o Password incorrectos.',

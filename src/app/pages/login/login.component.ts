@@ -24,17 +24,4 @@ export class LoginComponent {
     signOut() {
     this.authenticationService.SignOut();
     }
-
-  // async isLogin(){
-  //   const login = this.authenticationService.userData.subscribe(resp => {
-  //     const l = (resp) ? true : false
-  //     //console.log(l);
-  //     return l
-  //   }, error => {
-  //     //console.log(error);
-  //   })
-    
-  //   return login
-  // }
-
 }

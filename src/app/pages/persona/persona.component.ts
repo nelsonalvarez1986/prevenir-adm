@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
 import { Persona } from '../../interfaces/personas';
 import { BarriosService } from '../../services/barrios.service';
@@ -31,7 +31,9 @@ export class PersonaComponent implements OnInit {
     private firebase: FirebaseService,
     private barrioService: BarriosService,
     private ruta: ActivatedRoute,
-    private _location: Location
+    //private _location: Location
+    private router: Router
+
      ) { }
 
   async ngOnInit() {
@@ -45,6 +47,7 @@ export class PersonaComponent implements OnInit {
       this.dni_persona = this.ruta.snapshot.paramMap.get("dni_persona");
       await this.buscarTermino(this.dni_persona);
       this.nuevo = false;
+
     }else {
       this.cargando = false;
       this.persona.push (
@@ -111,8 +114,6 @@ export class PersonaComponent implements OnInit {
     }).then(async (result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        console.log('ok');
-        
         p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
         p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
         p.Dificultad_respiratoria = this.convertirTexto(p.Dificultad_respiratoria);
@@ -125,18 +126,18 @@ export class PersonaComponent implements OnInit {
         await this.firebase.addPersona(p).then(resp => {
           this.cargando = false;
           Swal.fire('Persona Guardada Ok', '', 'success');
-          this._location.back();
+          //this._location.back();
+          this.router.navigateByUrl('/');
         })
         /* */
       } else if (result.isDenied) {
-        console.log('cancel');
         Swal.fire('Cambios No guardados', '', 'info')
       }
     })
   }
   
   async updatePersona( p ) {
-    this.cargando = true
+    
     /**/
     Swal.fire({
       title: 'Actualizar datos de la persona?',
@@ -146,7 +147,6 @@ export class PersonaComponent implements OnInit {
       confirmButtonColor: '#00C851',
       cancelButtonColor: '#d33',
     }).then(async (result) => {
-      console.log(result);
       if (result.isConfirmed) {
         p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
         p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
@@ -157,40 +157,23 @@ export class PersonaComponent implements OnInit {
         p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
         p.Tos = this.convertirTexto(p.Tos);
 
+        this.cargando = true
         await this.firebase.updatePersona(p).then(resp => {
           this.cargando = false;
           Swal.fire('Datos Actualizados Ok', '', 'success');
+          //this._location.back();
+          this.router.navigateByUrl('/');
         })
       } else if (result.isDenied) {
-        console.log('cancel');
         Swal.fire('Cambios No guardados', '', 'info')
       }
+      this.cargando = false;
     })
-
-    /*await this.firebase.updatePersona(p).then(resp => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Datos de la Persona actualizados correctamente',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }).catch(error => {
-      Swal.fire({
-        position: 'center',
-        icon: 'error',
-        title: 'Error al actualizar a la Persona, por favor intente nuevamente mas tarde.',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    })
-    this.cargando = false;
-    this._location.back();*/
-
   }
 
   cancelarEdit() {
-    this._location.back();
+    //this._location.back();
+    this.router.navigateByUrl('/');
   }
 
 }

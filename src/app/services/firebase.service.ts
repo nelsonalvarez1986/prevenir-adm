@@ -100,13 +100,20 @@ export class FirebaseService {
   }
 
   async updatePersona(persona: any) {
-    let database = this.db.database;
-    let rootRef = database.ref("Personas");
-    const personaFire = (await this.getPersonsDni(persona.dni));
     
-    let idFire = Object.keys(personaFire)[0];
-    rootRef.child(idFire).update(persona);
-  }
+    let database = this.db.database;
+    let rootRef = database.ref("Personas")
+    
+    new Promise( (resolve, reject) => {
+      rootRef.orderByChild("dni").equalTo(persona.dni).on('value', function(snapshot) {  
+          snapshot.forEach(function(childSnapshot){
+              rootRef.child(childSnapshot.key).update(persona)
+              .then(resp => resolve(true) )
+              .catch(error => reject(false))
+          })
+        })
+    })
+    }
 
   async addPersona(persona: any) {
     let database = this.db.database;

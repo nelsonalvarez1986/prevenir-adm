@@ -24,10 +24,8 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
 
     this.userIdle.startWatching();
-      
-    this.userIdle.onTimerStart().subscribe(count => console.log(count));
-
-    this.userIdle.onTimeout().subscribe(() => console.log('Time is up!'));
+    /*this.userIdle.onTimerStart().subscribe(count => console.log(count));
+    this.userIdle.onTimeout().subscribe(() => console.log('Time is up!'));*/
 
     this.cantidades = {
       positivos: await this.firebase.getPersonsState('Positivo').then( resp => resp),
