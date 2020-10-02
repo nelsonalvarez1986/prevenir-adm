@@ -99,49 +99,75 @@ export class PersonaComponent implements OnInit {
     :  'Si';
   }
 
-  async addPersona(p) {
-    p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
-    p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
-    p.Dificultad_respiratoria = this.convertirTexto(p.Dificultad_respiratoria);
-    p.Dolor_de_garganta = this.convertirTexto(p.Dolor_de_garganta);
-    p.Fiebre = this.convertirTexto(p.Fiebre);
-    p.Perdida_gusto_olfato = this.convertirTexto(p.Perdida_gusto_olfato);
-    p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
-    p.Tos = this.convertirTexto(p.Tos);
-    
-    await this.firebase.addPersona(p).then(resp => {
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Persona cargada correctamente',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    }).catch(error => {
-      Swal.fire({
-        position: 'center', 
-        icon: 'error',
-        title: 'Error al cargar a la Persona, por favor intente nuevamente mas tarde.',
-        showConfirmButton: false,
-        timer: 1500
-      })
+  async addPersona(p) {  
+    /**/
+    Swal.fire({
+      title: 'Guardar nueva persona?',
+      showCancelButton: true,
+      confirmButtonText: `Guardar`,
+      cancelButtonText: `Cancelar`,
+      confirmButtonColor: '#00C851',
+      cancelButtonColor: '#d33',
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        console.log('ok');
+        
+        p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
+        p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
+        p.Dificultad_respiratoria = this.convertirTexto(p.Dificultad_respiratoria);
+        p.Dolor_de_garganta = this.convertirTexto(p.Dolor_de_garganta);
+        p.Fiebre = this.convertirTexto(p.Fiebre);
+        p.Perdida_gusto_olfato = this.convertirTexto(p.Perdida_gusto_olfato);
+        p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
+        p.Tos = this.convertirTexto(p.Tos);
+
+        await this.firebase.addPersona(p).then(resp => {
+          this.cargando = false;
+          Swal.fire('Persona Guardada Ok', '', 'success');
+          this._location.back();
+        })
+        /* */
+      } else if (result.isDenied) {
+        console.log('cancel');
+        Swal.fire('Cambios No guardados', '', 'info')
+      }
     })
-    this.cargando = false;
-    this._location.back();
   }
   
   async updatePersona( p ) {
     this.cargando = true
-    p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
-    p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
-    p.Dificultad_respiratoria = this.convertirTexto(p.Dificultad_respiratoria);
-    p.Dolor_de_garganta = this.convertirTexto(p.Dolor_de_garganta);
-    p.Fiebre = this.convertirTexto(p.Fiebre);
-    p.Perdida_gusto_olfato = this.convertirTexto(p.Perdida_gusto_olfato);
-    p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
-    p.Tos = this.convertirTexto(p.Tos);
+    /**/
+    Swal.fire({
+      title: 'Actualizar datos de la persona?',
+      showCancelButton: true,
+      confirmButtonText: `Actualizar`,
+      cancelButtonText: `Cancelar`,
+      confirmButtonColor: '#00C851',
+      cancelButtonColor: '#d33',
+    }).then(async (result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        p.Caso_sospechoso = this.convertirTexto(p.Caso_sospechoso);
+        p.Contacto_estrecho = this.convertirTexto(p.Contacto_estrecho);
+        p.Dificultad_respiratoria = this.convertirTexto(p.Dificultad_respiratoria);
+        p.Dolor_de_garganta = this.convertirTexto(p.Dolor_de_garganta);
+        p.Fiebre = this.convertirTexto(p.Fiebre);
+        p.Perdida_gusto_olfato = this.convertirTexto(p.Perdida_gusto_olfato);
+        p.Personal_esencial = this.convertirTexto(p.Personal_esencial);
+        p.Tos = this.convertirTexto(p.Tos);
 
-    await this.firebase.updatePersona(p).then(resp => {
+        await this.firebase.updatePersona(p).then(resp => {
+          this.cargando = false;
+          Swal.fire('Datos Actualizados Ok', '', 'success');
+        })
+      } else if (result.isDenied) {
+        console.log('cancel');
+        Swal.fire('Cambios No guardados', '', 'info')
+      }
+    })
+
+    /*await this.firebase.updatePersona(p).then(resp => {
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -159,7 +185,7 @@ export class PersonaComponent implements OnInit {
       })
     })
     this.cargando = false;
-    this._location.back();
+    this._location.back();*/
 
   }
 
